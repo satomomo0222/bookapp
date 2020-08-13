@@ -1,15 +1,40 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Bookapp</title>
+    <title><%= yield(:title) %> | Bookapp</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+  <header>
+  <nav>
+    <% if user_signed_in? %>
+      <strong>Login account : <%= current_user.email %></strong>
+      <strong><%= link_to "Home", root_path %></strong>
+      <%= link_to 'プロフィール変更', edit_user_registration_path %>
+      <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+    <% else %>
+      <%= link_to 'サインアップ', new_user_registration_path %>
+      <%= link_to 'ログイン', new_user_session_path %>
+    <% end %>
+  </nav>
+</header>
+
+  <% if flash[:notice] %>
+    <div class="notification is-info">
+      <p class="notice"><%= notice %></p>
+    </div>
+  <% end %>
+  <% if flash[:alert] %>
+    <div class="notification is-danger">
+      <p class="alert"><%= alert %></p>
+    </div>
+  <% end %> 
+  <%= yield %>
   </body>
 </html>

@@ -1,0 +1,25 @@
+<% provide(:title, "確認メールの再送信") %>
+
+<section class="hero is-fullheight-with-navbar">
+  <div class="hero-body has-text-centered">
+    <div class="setup">
+      <%# <img src="https://logoipsum.com/logo/logo-1.svg" width="325px" /> %>
+      <div class="is-size-3 my-5">確認メールの再送信</div>
+      <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+      
+        <div class="field">
+          <div class="control">
+            <%= f.label :email, "メールアドレス"%>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: "input is-medium is-rounded textbox", placeholder:"hello@example.com", required: true %>
+          </div>
+        </div>
+          
+        <%= f.submit "確認メールを再送信", class: "button is-primary is-block is-fullwidth is-medium is-rounded" %>
+
+      <% end %>
+      <br>
+      <%= render "devise/shared/links"%>
+    </div>
+  </div>
+</section>
