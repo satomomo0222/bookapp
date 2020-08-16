@@ -1,0 +1,19 @@
+<% provide(:title, "プロフィールの編集") %>
+
+<section class="hero is-fullheight-with-navbar">
+  <div class="hero-body has-text-centered">
+    <div class="setup">
+      <div class="is-size-3 my-5">プロフィール編集</div>
+      <%= form_with model: @user, url: profile_update_path, local:true, method: :post do |form| %>
+        <div class="field">
+          <div class="control">
+            <%= form.label :username, "ニックネーム"%>
+            <%= form.text_field :username, class: "input is-medium is-rounded textbox", placeholder: @user.username, required: true %>
+          </div>
+        </div>
+
+        <%= form.submit "プロフィール更新", class: "button is-primary is-block is-fullwidth is-medium is-rounded" %>
+      <% end %>
+    </div>
+  </div>
+</section>

@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 2020_08_10_075419) do
     t.text "profile"
     t.text "profile_image_id"
     t.text "twitter"
+    t.text "instagram"
     t.text "facebook"
     t.text "website"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

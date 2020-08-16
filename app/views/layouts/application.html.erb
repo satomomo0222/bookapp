@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= yield(:title) %> | Bookapp</title>
+    <title><%= yield(:title) %> | 読書習慣</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600&display=swap" rel="stylesheet">
@@ -11,19 +11,6 @@
   </head>
 
   <body>
-  <header>
-  <nav>
-    <% if user_signed_in? %>
-      <strong>Login account : <%= current_user.email %></strong>
-      <strong><%= link_to "Home", root_path %></strong>
-      <%= link_to 'アカウント情報の編集', edit_user_registration_path %>
-      <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
-    <% else %>
-      <%= link_to 'サインアップ', new_user_registration_path %>
-      <%= link_to 'ログイン', new_user_session_path %>
-    <% end %>
-  </nav>
-</header>
 
   <% if flash[:notice] %>
     <div class="notification is-info">
@@ -35,6 +22,55 @@
       <p class="alert"><%= alert %></p>
     </div>
   <% end %> 
+
+  <nav class="navbar is-dark">
+    <div class="navbar-brand">
+      <%= link_to root_path, class: "navbar-item" do %>
+        <h1 class="title is-4 has-text-white">読書習慣</h1>
+      <% end %>
+      <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+
+    <% if user_signed_in? %>
+      <div id="navbarExampleTransparentExample" class="navbar-menu">
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="field is-grouped">
+              <p class="control">
+                <%= link_to 'アカウント情報の編集', edit_user_registration_path , class:"button is-light" %>
+              </p>
+              <%# <p class="control"> %>
+                <%#= link_to "マイページ", user_path(current_user), class: "button is-light" %> 
+              <%# </p> %>
+              <p class="control">
+                <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class:"button is-light" %>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% else %>
+      <div id="navbarExampleTransparentExample" class="navbar-menu">
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="field is-grouped">
+              <p class="control">
+                <%= link_to "ログイン", new_user_session_path, class: "button is-light" %>
+              </p>
+              <p class="control">
+                <%= link_to "新規登録", new_user_registration_path, class: "button is-light" %>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </nav>
+
   <%= yield %>
   </body>
 </html>
