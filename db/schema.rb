@@ -37,7 +37,6 @@ ActiveRecord::Schema.define(version: 2020_08_10_075419) do
     t.datetime "updated_at", precision: 6, null: false
     t.text "username"
     t.text "profile"
-    t.text "profile_image_id"
     t.text "twitter"
     t.text "instagram"
     t.text "facebook"

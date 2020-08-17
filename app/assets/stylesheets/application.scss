@@ -32,6 +32,10 @@ body {
   background: var(--background);
 }
 
+.notification:not(:last-child){
+  margin-bottom: 0;
+}
+
 .hero-body {
   justify-content: center;
 }
@@ -44,6 +48,10 @@ body {
 
 .textbox {
   background-color: var(--shadowDark) !important;
+}
+
+.textboxcss{
+  border-radius:30px;
 }
 
 a {

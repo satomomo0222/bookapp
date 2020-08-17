@@ -8,9 +8,56 @@
         <div class="field">
           <div class="control">
             <%= form.label :username, "ニックネーム"%>
+            <span class="has-text-danger">*</span>
             <%= form.text_field :username, class: "input is-medium is-rounded textbox", placeholder: @user.username, required: true %>
           </div>
         </div>
+        <div class="field">
+          <div class="control">
+            <%= form.label :profile_image_id, "プロフィール画像"%>
+            <%#= form.attachment_field :profile_image_id, class: "input is-medium",placeholder: @user.profile_image_id %>
+          </div>
+        </div>
+        <div class="field">
+          <div class="control">
+            <%= form.label :profile, "プロフィール"%>
+            <%= form.text_area :profile, class: "input is-medium textbox textarea textboxcss", placeholder: @user.profile %>
+          </div>
+        </div>
+        <div class="field">
+          <div class="control">
+            <%= form.label :twitter, "Twitter URL"%>
+            <%= form.text_field :twitter, class: "input is-medium is-rounded textbox", placeholder: @user.twitter %>
+          </div>
+        </div>
+        <div class="field">
+          <div class="control">
+            <%= form.label :instagram, "Instagram URL"%>
+            <%= form.text_field :instagram, class: "input is-medium is-rounded textbox", placeholder: @user.instagram %>
+          </div>
+        </div>
+        <div class="field">
+          <div class="control">
+            <%= form.label :facebook, "Facebook URL"%>
+            <%= form.text_field :facebook, class: "input is-medium is-rounded textbox", placeholder: @user.facebook %>
+          </div>
+        </div>
+        <div class="field">
+          <div class="control">
+            <%= form.label :website, "WebサイトURL"%>
+            <%= form.text_field :website, class: "input is-medium is-rounded textbox", placeholder: @user.website %>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
 
         <%= form.submit "プロフィール更新", class: "button is-primary is-block is-fullwidth is-medium is-rounded" %>
       <% end %>

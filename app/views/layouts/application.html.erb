@@ -8,6 +8,10 @@
     
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <!--jquery cdn -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
   </head>
 
   <body>
@@ -38,31 +42,44 @@
     <% if user_signed_in? %>
       <div id="navbarExampleTransparentExample" class="navbar-menu">
         <div class="navbar-end">
-          <div class="navbar-item">
-            <div class="field is-grouped">
-              <p class="control">
-                <%= link_to 'アカウント情報の編集', edit_user_registration_path , class:"button is-light" %>
-              </p>
-              <%# <p class="control"> %>
-                <%#= link_to "マイページ", user_path(current_user), class: "button is-light" %> 
-              <%# </p> %>
-              <p class="control">
-                <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class:"button is-light" %>
-              </p>
+          <%= link_to '今週の課題図書', root_url , class:"navbar-item" %>
+          <%= link_to 'これまでの課題図書', root_url , class:"navbar-item" %>
+          <%= link_to "マイページ", users_mypage_path(current_user), class: "navbar-item" %> 
+          <div class="navbar-item has-dropdown is-hoverable">
+            <p class="navbar-link">
+              その他
+            </p>
+            <div class="navbar-dropdown">
+              <%= link_to '基本情報の編集', edit_user_registration_path ,class:"navbar-item"%>
+              <a class="navbar-item">
+                ご要望
+              </a>
+              <a class="navbar-item">
+                お問い合わせ
+              </a>
+              <hr class="navbar-divider">
+              <a class="navbar-item">
+                Report an issue
+              </a>
             </div>
+          </div>
+          <div class="navbar-item">
+            <%= button_to 'ログアウト',destroy_user_session_path, method: :delete, class:"button is-danger" %>
           </div>
         </div>
       </div>
     <% else %>
       <div id="navbarExampleTransparentExample" class="navbar-menu">
         <div class="navbar-end">
+          <%= link_to '今週の課題図書', root_url , class:"navbar-item" %>
+          <%= link_to '過去の課題図書', root_url , class:"navbar-item" %>
           <div class="navbar-item">
             <div class="field is-grouped">
               <p class="control">
-                <%= link_to "ログイン", new_user_session_path, class: "button is-light" %>
+                <%= link_to "ログイン", new_user_session_path, class: "button is-primary navbar-item" %>
               </p>
               <p class="control">
-                <%= link_to "新規登録", new_user_registration_path, class: "button is-light" %>
+                <%= link_to "新規登録", new_user_registration_path, class: "button is-danger navbar-item" %>
               </p>
             </div>
           </div>
@@ -72,5 +89,26 @@
   </nav>
 
   <%= yield %>
+
+
+
+    <!--
+    Bulmaでハンバーガーメニューをクリックして表示されない
+    たぶんnode.jsがインストールされていないため
+    とりあえず、jqueryのcdnを使って、コードを追加しハンバーガーメニューを表示させる
+    -->
+    <script type="text/javascript">
+      document.querySelector('.navbar-burger').addEventListener("click", toggleNav);
+
+      function toggleNav() {
+              var nav = document.querySelector('.navbar-menu');
+              if(nav.className == "navbar-menu") {
+                  nav.className = "navbar-menu is-active";
+              } else {
+                  nav.className = "navbar-menu";
+              }
+      }
+    </script>
+
   </body>
 </html>

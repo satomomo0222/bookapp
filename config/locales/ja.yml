@@ -211,16 +211,20 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
+
+  site_title: 読書習慣
+
+
   attributes:
-    user:
-      username: 名前
-      user: ユーザー
-      password: パスワード
-      email: メールアドレス
-
-site_title: Bookapp
-
-ja:
+    Current_password: "現在のパスワード"
+    Current password: "現在のパスワード"
+    current password: "現在のパスワード"
+    current_password: "現在のパスワード"
+    name: 名前
+    email: "メールアドレス"
+    password: "パスワード"
+    password_confirmation: "確認用パスワード"
+    remember_me: "次回から自動的にログイン"
   errors:
     messages:
       not_found: "は見つかりませんでした"
@@ -250,6 +254,7 @@ ja:
       user:
         not_found_in_database: このユーザーは存在しません
         signed_up_but_unconfirmed: まだメール認証されていません
+        already_authenticated: すでにログインしています
 
     sessions:
       signed_in: 'ログインしました。'
@@ -273,6 +278,9 @@ ja:
 #      updated: 'You updated your account successfully.'
       destroyed: 'アカウントを削除しました。またのご利用をお待ちしております。'
 #      destroyed: 'Bye! Your account was successfully cancelled. We hope to see you again soon.'
+      user:
+        update_needs_confirmation: 確認メールを送信しました。承認しない限り、変更は更新されません。
+
     unlocks:
       send_instructions: 'アカウントの凍結解除方法を数分以内にメールでご連絡します。'
 #      send_instructions: 'You will receive an email with instructions about how to unlock your account in a few minutes.'
