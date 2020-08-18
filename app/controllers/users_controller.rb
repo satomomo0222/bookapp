@@ -1,8 +1,13 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:edit, :update]
-  before_action :set_user, only: [:edit, :update , :mypage]
+  before_action :set_user, only: [:edit, :update , :index]
 
-  def mypage
+  def index
+    @users = User.all
+  end
+
+  def show
+    @user = User.find(params[:id])
   end
 
   def edit
@@ -11,7 +16,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to users_mypage_path, notice: 'プロフィールが更新されました。' }
+        format.html { redirect_to users_path, notice: 'プロフィールが更新されました。' }
       else
         format.html { render :edit }
       end

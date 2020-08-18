@@ -4,7 +4,7 @@
   <div class="hero-body has-text-centered">
     <div class="setup">
       <div class="is-size-3 my-5">プロフィール編集</div>
-      <%= form_with model: @user, url: profile_update_path, local:true, method: :post do |form| %>
+      <%= form_with model: @user, url: profile_edit_path, local:true, method: :post do |form| %>
         <div class="field">
           <div class="control">
             <%= form.label :username, "ニックネーム"%>

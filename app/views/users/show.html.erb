@@ -1,0 +1,17 @@
+<p>ここはshow</p>
+<figure class="image is-128x128">
+  <%= attachment_image_tag @user, :profile_image, fallback: "no-image" %>
+</figure>
+<table>
+  <tr>
+    <td>
+      <%= @user.id %>
+    </td>
+    <td>
+      <%= @user.email %>
+    </td>
+    <td>
+      <%= @user.username %>
+    </td>
+  </tr>
+</table>
