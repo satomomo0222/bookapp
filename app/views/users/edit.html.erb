@@ -14,8 +14,8 @@
         </div>
         <div class="field">
           <div class="control">
-            <%= form.label :profile_image_id, "プロフィール画像"%>
-            <%#= form.attachment_field :profile_image_id, class: "input is-medium",placeholder: @user.profile_image_id %>
+            <%= form.label :profile_image, "プロフィール画像"%>
+            <%= form.attachment_field :profile_image, class: "input is-light textbox is-rounded",placeholder: @user.profile_image %>
           </div>
         </div>
         <div class="field">
@@ -48,17 +48,7 @@
             <%= form.text_field :website, class: "input is-medium is-rounded textbox", placeholder: @user.website %>
           </div>
         </div>
-
-
-
-
-
-
-
-
-
-
-
+        <br/>
         <%= form.submit "プロフィール更新", class: "button is-primary is-block is-fullwidth is-medium is-rounded" %>
       <% end %>
     </div>

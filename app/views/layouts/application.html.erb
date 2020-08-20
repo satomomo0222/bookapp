@@ -50,7 +50,7 @@
               その他
             </p>
             <div class="navbar-dropdown">
-              <%= link_to '基本情報の編集', edit_user_registration_path ,class:"navbar-item"%>
+              <%= link_to '基本情報の編集', edit_user_registration_path(current_user) ,class:"navbar-item"%>
               <a class="navbar-item">
                 ご要望
               </a>
@@ -90,13 +90,6 @@
 
   <%= yield %>
 
-
-
-    <!--
-    Bulmaでハンバーガーメニューをクリックして表示されない
-    たぶんnode.jsがインストールされていないため
-    とりあえず、jqueryのcdnを使って、コードを追加しハンバーガーメニューを表示させる
-    -->
     <script type="text/javascript">
       document.querySelector('.navbar-burger').addEventListener("click", toggleNav);
 

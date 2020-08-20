@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to users_path, notice: 'プロフィールが更新されました。' }
+        format.html { redirect_to user_path(current_user), notice: 'プロフィールが更新されました。' }
       else
         format.html { render :edit }
       end
@@ -29,7 +29,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:username,:profile,:profile_image_id,:twitter,:instagram,:facebook,:website)
+    params.require(:user).permit(:username,:profile,:profile_image,:twitter,:instagram,:facebook,:website)
   end
 
 end

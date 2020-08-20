@@ -1,7 +1,7 @@
-<% provide(:title, "マイページ ") %>
+<% provide(:title, "ユーザー一覧") %>
 <%= current_user.email %>
-<h1>マイページ</h1>
-<p>ここに作ります</p>
+<h1>ユーザー一覧</h1>
+
 
 <% @users.each do |user| %>
   <figure class="image is-128x128">
@@ -9,5 +9,12 @@
       <%= attachment_image_tag user, :profile_image, fallback: "no-image" %>
     <% end %>
   </figure>
-  <%= user.email %>
+  <%= @user.id %>
+  <%= @user.email %>
+  <%= @user.username %>
+  <%= @user.profile %>
+  <%= @user.twitter %>
+  <%= @user.instagram %>
+  <%= @user.facebook %>
+  <%= @user.website %>
 <% end %>

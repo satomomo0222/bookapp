@@ -10,6 +10,7 @@
         <div class="field">
           <div class="control">
             <%= f.label :email, "メールアドレス"%>
+            <span class="has-text-danger">*</span>
             <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input is-medium is-rounded textbox", placeholder:"hello@example.com", required: true %>
           </div>
         </div>
@@ -20,6 +21,7 @@
         
         <div class="field">
           <%= f.label :current_password , "現在のパスワードを入力してください"%>
+          <span class="has-text-danger">*</span>
           <%= f.password_field :current_password, autocomplete: "current-password" ,class:"input is-medium is-rounded textbox", placeholder:"**********"%>
         </div>
 

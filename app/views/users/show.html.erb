@@ -1,17 +1,37 @@
-<p>ここはshow</p>
-<figure class="image is-128x128">
-  <%= attachment_image_tag @user, :profile_image, fallback: "no-image" %>
-</figure>
-<table>
-  <tr>
-    <td>
-      <%= @user.id %>
-    </td>
-    <td>
-      <%= @user.email %>
-    </td>
-    <td>
-      <%= @user.username %>
-    </td>
-  </tr>
-</table>
+<% if @user.id == current_user.id%>
+  <% provide(:title, "マイページ") %>
+<% else %>
+  <% provide(:title, "#{@user.username}") %>
+<% end %>
+
+<section class="has-background-primary-light">
+  <div class="container is-fluid">
+
+    <% if @user.id == current_user.id%>
+      <div class="level-right ">
+        <%= button_to 'プロフィール編集',profile_edit_path,method: :get, class:"button is-success" %>
+      </div>
+    <% end %>
+
+    <div class="columns is-centered">
+      <div class="column is-6">
+          <figure class="image is-128x128 container is-centered">
+            <%= attachment_image_tag @user, :profile_image, fallback: "no-image", class:"is-rounded" %>
+          </figure>
+      </div>
+      <div class="column is-6">
+        <div class="container is-centered">
+              <%= @user.username %>
+              <%= @user.profile %>
+              <%= @user.twitter %>
+              <%= @user.instagram %>
+              <%= @user.facebook %>
+              <%= @user.website %>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<div>Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.</div>
