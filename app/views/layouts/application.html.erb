@@ -17,7 +17,7 @@
   <body>
 
   <% if flash[:notice] %>
-    <div class="notification is-info">
+    <div class="notification is-primary">
       <p class="notice"><%= notice %></p>
     </div>
   <% end %>
@@ -25,7 +25,11 @@
     <div class="notification is-danger">
       <p class="alert"><%= alert %></p>
     </div>
-  <% end %> 
+  <% end %>
+
+  <% if resource.present? %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+  <% end %>
 
   <nav class="navbar is-dark">
     <div class="navbar-brand">
@@ -50,7 +54,7 @@
               その他
             </p>
             <div class="navbar-dropdown">
-              <%= link_to '基本情報の編集', edit_user_registration_path(current_user) ,class:"navbar-item"%>
+              <%= link_to '基本情報の編集', edit_user_registration_path ,class:"navbar-item"%>
               <a class="navbar-item">
                 ご要望
               </a>
@@ -64,7 +68,7 @@
             </div>
           </div>
           <div class="navbar-item">
-            <%= button_to 'ログアウト',destroy_user_session_path, method: :delete, class:"button is-danger" %>
+            <%= link_to 'ログアウト',destroy_user_session_path, method: :delete, class:"button is-danger" %>
           </div>
         </div>
       </div>

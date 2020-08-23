@@ -6,7 +6,7 @@
       <%# <img src="https://logoipsum.com/logo/logo-1.svg" width="325px" /> %>
       <div class="is-size-3 my-5">アカウント凍結解除メールの再送信</div>
       <%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
-      <%= render "devise/shared/error_messages", resource: resource %>
+      <%#= render "devise/shared/error_messages", resource: resource %>
       
         <div class="field">
           <div class="control">

@@ -6,7 +6,7 @@
       <%# <img src="https://logoipsum.com/logo/logo-1.svg" width="325px" /> %>
       <div class="is-size-3 my-5">パスワードの再設定</div>
       <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-      <%= render "devise/shared/error_messages", resource: resource %>
+      <%#= render "devise/shared/error_messages", resource: resource %>
       
         <div class="field">
           <div class="control">

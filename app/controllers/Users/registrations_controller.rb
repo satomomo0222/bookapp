@@ -60,8 +60,4 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
 
-  def after_update_up_path_for(resource)
-    edit_user_registration_path
-  end
-
 end

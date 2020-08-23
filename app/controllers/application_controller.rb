@@ -9,4 +9,5 @@ class ApplicationController < ActionController::Base
       profile_edit_path  #指定したいパスに変更
     end
   end
+
 end

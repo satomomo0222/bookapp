@@ -4,6 +4,11 @@
    <div class="hero-body">
        <div class="container">
           <h1 class="title">今週の課題図書</h1>
+
+          <div class="container">
+            ここに今週の課題図書の画像と紹介文を載せます。課題図書データベースからデータを持ってきます。Amazonと楽天のアソシエイト購入ボタンも設置しておきます。
+          </div>
+
        </div>
    </div>
 </div>
@@ -12,12 +17,12 @@
   <div class="submenu column is-3">
     <aside class="box menu">
       <p class="menu-label">プロフィール</p>
-      <%= link_to user_path(current_user) do %>
-        <figure class="image is-128x128">
-          <%= attachment_image_tag @user, :profile_image, fallback: "no-image",class:"is-rounded" %>
-        </figure>
-      <% end %>
       <% if @user %>
+        <%= link_to user_path(current_user) do %>
+          <figure class="image is-128x128">
+            <%= attachment_image_tag @user, :profile_image, fallback: "no-image",class:"is-rounded" %>
+          </figure>
+        <% end %>
         <p class="menu-label">ニックネーム</p>
         <%= link_to user_path(current_user) do %>
         <p class="is-size-5 has-text-dark"><%= @user.username %></p>
@@ -27,8 +32,11 @@
         <p class="menu-label">読んだ本の数</p>
         <p class="menu-label">集めたいいねの数</p>
       <% else %>
+        <figure class="image is-128x128">
+            <%= attachment_image_tag @user, :profile_image, fallback: "no-image",class:"is-rounded" %>
+        </figure>
         <p class="menu-label">ニックネーム</p>
-        <a class="is-size-5 has-text-dark">読書習慣をつけたいダルマ</a>
+        <p class="is-size-5 has-text-dark">ゲストユーザー</p>
       <% end %>
     </aside>
     <aside class="box menu">
@@ -43,10 +51,10 @@
    </aside>
   </div>
 
-  <div class="column">
+  <div class="column is-9">
     <div class="hero is-bold">
       <div class="hero-body level">
-        <div class="is-size-4 has-text-weight-bold">課題図書についてのコメント 一覧</div>
+        <div class="is-size-4 has-text-weight-bold">みんなのアウトプット</div>
         <div class="level-item level-right">
           <div class="field has-addons">
             <div class="control">
@@ -77,10 +85,167 @@
         </ul>
       </div>
     </section>
-  <div class="container is-fluid">
-    <p class="">
-      Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.Hello.なんでちょっとはみ出るの？右側。ここに投稿一覧を作る。並び替えと絞り込みのデザインもっといい感じにしたい。プロフィールの画像を中心に持ってきたいけど？
-    </p>
-  </div>
+    <div class="container is-fluid">
+      <p class="">
+        ここに投稿一覧を作る。並び替えと絞り込みのデザインもっといい感じにしたい。プロフィールの画像を中心に持ってきたいけどうまくできない。
+        is-3 と is-9 で 合計12なのに右側がなぜか空いている？
+      </p>
+    </div>
+
+    <article class="box media">
+      <figure class="media-left">
+          <p class="image is-64x64">
+            <img src="http://placehold.it/128x128" class="is-rounded">
+          </p>
+      </figure>
+      <div class="media-content">
+          <div class="content">
+            <p><strong>CASAREAL</strong><br>
+                内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容<br>
+                <small><a>Like</a> · <a>Reply</a> · 3 hrs</small>
+              </p>
+          </div>
+          <article class="media">
+              <figure class="media-left">
+                <p class="image is-48x48">
+                    <img src="http://placehold.it/96x96" class="is-rounded">
+                </p>
+              </figure>
+              <div class="media-content">
+                <div class="content">
+                  <p><strong>Sean Brown</strong><br>
+                      コメントコメントコメントコメントコメントコメントコメントコメントコメントコメント<br>
+                      <small><a>Like</a> · <a>Reply</a> · 2 hrs</small>
+                  </p>
+                </div>
+                <article class="media">
+                    リプライリプライリプライリプライリプライリプライリプライリプライリプライリプライ。
+                </article>
+                <article class="media">
+                    リプライリプライリプライリプライリプライリプライリプライリプライリプライリプライ。
+                </article>
+              </div>
+          </article>
+      </div>
+    </article>
+    <article class="box media">
+      <figure class="media-left">
+          <p class="image is-48x48">
+            <img src="http://placehold.it/96x96" class="is-rounded">
+          </p>
+      </figure>
+      <div class="media-content">
+          <div class="content">
+            <p><strong>CASAREAL</strong><br>
+              内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容<br>
+              <small><a>Like</a> · <a>Reply</a> · 2 hrs</small>
+            </p>
+          </div>
+      </div>
+    </article>
+    <article class="box media">
+      <figure class="media-left">
+          <p class="image is-64x64">
+            <img src="http://placehold.it/128x128" class="is-rounded">
+          </p>
+      </figure>
+      <div class="media-content">
+          <div class="content">
+            <p><strong>CASAREAL</strong><br>
+                内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容<br>
+                <small><a>Like</a> · <a>Reply</a> · 3 hrs</small>
+              </p>
+          </div>
+          <article class="media">
+              <figure class="media-left">
+                <p class="image is-48x48">
+                    <img src="http://placehold.it/96x96" class="is-rounded">
+                </p>
+              </figure>
+              <div class="media-content">
+                <div class="content">
+                  <p><strong>Sean Brown</strong><br>
+                      コメントコメントコメントコメントコメントコメントコメントコメントコメントコメント<br>
+                      <small><a>Like</a> · <a>Reply</a> · 2 hrs</small>
+                  </p>
+                </div>
+                <article class="media">
+                    リプライリプライリプライリプライリプライリプライリプライリプライリプライリプライ。
+                </article>
+                <article class="media">
+                    リプライリプライリプライリプライリプライリプライリプライリプライリプライリプライ。
+                </article>
+              </div>
+          </article>
+      </div>
+    </article>
+    <article class="box media">
+      <figure class="media-left">
+          <p class="image is-48x48">
+            <img src="http://placehold.it/96x96" class="is-rounded">
+          </p>
+      </figure>
+      <div class="media-content">
+          <div class="content">
+            <p><strong>CASAREAL</strong><br>
+              内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容<br>
+              <small><a>Like</a> · <a>Reply</a> · 2 hrs</small>
+            </p>
+          </div>
+      </div>
+    </article>
+    <article class="box media">
+      <figure class="media-left">
+          <p class="image is-64x64">
+            <img src="http://placehold.it/128x128" class="is-rounded">
+          </p>
+      </figure>
+      <div class="media-content">
+          <div class="content">
+            <p><strong>CASAREAL</strong><br>
+                内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容<br>
+                <small><a>Like</a> · <a>Reply</a> · 3 hrs</small>
+              </p>
+          </div>
+          <article class="media">
+              <figure class="media-left">
+                <p class="image is-48x48">
+                    <img src="http://placehold.it/96x96" class="is-rounded">
+                </p>
+              </figure>
+              <div class="media-content">
+                <div class="content">
+                  <p><strong>Sean Brown</strong><br>
+                      コメントコメントコメントコメントコメントコメントコメントコメントコメントコメント<br>
+                      <small><a>Like</a> · <a>Reply</a> · 2 hrs</small>
+                  </p>
+                </div>
+                <article class="media">
+                    リプライリプライリプライリプライリプライリプライリプライリプライリプライリプライ。
+                </article>
+                <article class="media">
+                    リプライリプライリプライリプライリプライリプライリプライリプライリプライリプライ。
+                </article>
+              </div>
+          </article>
+      </div>
+    </article>
+    <article class="box media">
+      <figure class="media-left">
+          <p class="image is-48x48">
+            <img src="http://placehold.it/96x96" class="is-rounded">
+          </p>
+      </figure>
+      <div class="media-content">
+          <div class="content">
+            <p><strong>CASAREAL</strong><br>
+              内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容<br>
+              <small><a>Like</a> · <a>Reply</a> · 2 hrs</small>
+            </p>
+          </div>
+      </div>
+    </article>
+
+
   </div>
 </main>

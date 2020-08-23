@@ -6,7 +6,7 @@
       <%# <img src="https://logoipsum.com/logo/logo-1.svg" width="325px" /> %>
       <div class="is-size-3 my-5">基本情報の編集</div>
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-      <%= render "devise/shared/error_messages", resource: resource %>
+      <%#= render "devise/shared/error_messages", resource: resource %>
         <div class="field">
           <div class="control">
             <%= f.label :email, "メールアドレス"%>
@@ -22,7 +22,7 @@
         <div class="field">
           <%= f.label :current_password , "現在のパスワードを入力してください"%>
           <span class="has-text-danger">*</span>
-          <%= f.password_field :current_password, autocomplete: "current-password" ,class:"input is-medium is-rounded textbox", placeholder:"**********"%>
+          <%= f.password_field :current_password, autocomplete: "current-password" ,class:"input is-medium is-rounded textbox", placeholder:"**********", required: true %>
         </div>
 
         <div class="field">
