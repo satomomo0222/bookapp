@@ -1,0 +1,41 @@
+<%= form_with(model: book, local: true) do |form| %>
+
+  <div class="field">
+    <div class="control">
+      <%= form.label :title, "タイトル"%>
+      <span class="has-text-danger">*</span>
+      <%= form.text_field :title, class: "input is-medium is-rounded textbox", placeholder: @book.title, required: true %>
+    </div>
+  </div>
+  <div class="field">
+    <div class="control">
+      <%= form.label :body, "説明"%>
+      <span class="has-text-danger">*</span>
+      <%= form.text_area :body, class: "input is-medium textbox textarea textboxcss", placeholder: @book.body, required: true %>
+    </div>
+  </div>
+  <div class="field">
+    <div class="control">
+      <%= form.label :book_image, "表紙"%>
+      <%= form.attachment_field :book_image, class: "input is-light textbox is-rounded",placeholder: @book.book_image %>
+    </div>
+  </div>
+  
+
+  <div class="field">
+    <div class="control">
+      <%= form.label :amazon_url, "アマゾンURL"%>
+      <%= form.text_field :amazon_url, class: "input is-medium is-rounded textbox", placeholder: @book.amazon_url %>
+    </div>
+  </div>
+  <div class="field">
+    <div class="control">
+      <%= form.label :rakuten_url, "楽天URL"%>
+      <%= form.text_field :rakuten_url, class: "input is-medium is-rounded textbox", placeholder: @book.rakuten_url %>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

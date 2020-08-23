@@ -1,4 +1,5 @@
-<% if @user.id == current_user.id%>
+
+<% if user_signed_in? && @user.id == current_user.id %>
   <% provide(:title, "マイページ") %>
 <% else %>
   <% provide(:title, "#{@user.username}") %>
@@ -69,7 +70,7 @@
           </tr>
           <% end %>
         </table>
-        <% if @user.id == current_user.id%>
+        <% if user_signed_in? && @user.id == current_user.id %>
           <%= link_to 'プロフィール編集', profile_edit_path ,method: :get, class:"button is-light" %>
         <% end %>
       </div>
