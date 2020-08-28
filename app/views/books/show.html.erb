@@ -1,7 +1,282 @@
-<p id="notice"><%= notice %></p>
+<% provide(:title, "Home") %>
+
+<section class="hero is-info is-default is-bold mb-5">
+  <div class="hero-body">
+      <div class="container has-text-centered">
+          <h1 class="title">過去の課題図書</h1>
+          <div class="columns is-vcentered">
+              <div class="column is-3 is-offset-2">
+                  <figure class="image is-4by4 container is-centered">
+                    <%= attachment_image_tag @book, :book_image, fallback: "no-image", class:"" %>
+                  </figure>
+              </div>
+              <div class="column is-7">
+                  <h1 class="title is-2">
+                    <%= @book.title %>
+                  </h1>
+                  <h2 class="subtitle is-4">
+                      <%= simple_format @book.body %>
+                  </h2>
+                  <br>
+                  <p class="has-text-centered">
+                      <a class="button is-medium is-light is-outlined">
+                          購入する
+                      </a>
+                      <%= link_to '編集する（管理者権限）', edit_book_path(@book), class:"button is-medium is-light is-outlined" %>
+                  </p>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+
+<main class="columns">
+  <div class="submenu column is-3">
+    <aside class="box menu">
+      <p class="menu-label">プロフィール</p>
+      <% if @user %>
+        <%= link_to user_path(current_user) do %>
+          <figure class="image is-128x128">
+            <%= attachment_image_tag @user, :profile_image, fallback: "no-image",class:"is-rounded" %>
+          </figure>
+        <% end %>
+        <p class="menu-label">ニックネーム</p>
+        <%= link_to user_path(current_user) do %>
+        <p class="is-size-5 has-text-dark"><%= @user.username %></p>
+        <% end %>
+        <p class="menu-label">フォロー</p>
+        <p class="menu-label">フォロワー</p>
+        <p class="menu-label">読んだ本の数</p>
+        <p class="menu-label">集めたいいねの数</p>
+      <% else %>
+        <figure class="image is-128x128">
+            <%= attachment_image_tag @user, :profile_image, fallback: "no-image",class:"is-rounded" %>
+        </figure>
+        <p class="menu-label">ニックネーム</p>
+        <p class="is-size-5 has-text-dark">ゲストユーザー</p>
+      <% end %>
+    </aside>
+    <aside class="box menu">
+      <p class="menu-label">今週の課題図書</p>
+      <div class="box">
+        <figure class="image is-4by4 container is-centered">
+          <%= attachment_image_tag @book, :book_image, fallback: "no-image", class:"" %>
+        </figure>
+      </div>
+      <p class="menu-label">タイトル</p>
+      <div class="is-size-5 title"><%= @book.title %></div>
+      <p class="menu-label">説明</p>
+      <div><%= @book.body %></div>
+   </aside>
+    <aside class="box menu">
+      <p class="menu-label">来週の課題図書</p>
+      <div class="box">
+        <figure class="image is-4by4 container is-centered">
+          <%= attachment_image_tag @book, :book_image, fallback: "no-image", class:"" %>
+        </figure>
+      </div>
+      <p class="menu-label">タイトル</p>
+      <div class="is-size-5 title"><%= @book.title %></div>
+      <p class="menu-label">説明</p>
+      <div><%= @book.body %></div>
+   </aside>
+  </div>
+
+  <div class="column is-9">
+    <div class="hero is-bold">
+      <div class="hero-body level">
+        <div class="is-size-4 has-text-weight-bold">みんなのアウトプット</div>
+        <div class="level-item level-right">
+          <div class="field has-addons">
+            <div class="control">
+                <input class="input" type="text" name="search" placeholder="キーワード検索">
+            </div>
+            <div class="control">
+                <a class="button is-info"><i class="fa fa-search"></i>検索</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <section class="level">
+      <div class="level-item  tabs">
+        <ul>
+         <li class="is-active"><a>新しい順</a></li>
+           <li><a>古い順</a></li>
+           <li><a>いいねが多い順</a></li>
+        </ul>
+      </div>
+    </section>
+    <section class="level">
+      <div class="level-item  tabs">
+        <ul>
+         <li class="is-active"><a>全ての投稿</a></li>
+           <li><a>フォローした人の投稿</a></li>
+           <li><a>フォローした人がいいねした投稿</a></li>
+        </ul>
+      </div>
+    </section>
+    <div class="container is-fluid">
+      <p class="">
+        ここに投稿一覧を作る。並び替えと絞り込みのデザインもっといい感じにしたい。プロフィールの画像を中心に持ってきたいけどうまくできない。
+        is-3 と is-9 で 合計12なのに右側がなぜか空いている？
+      </p>
+    </div>
+
+    <article class="box media">
+      <figure class="media-left">
+          <p class="image is-64x64">
+            <img src="http://placehold.it/128x128" class="is-rounded">
+          </p>
+      </figure>
+      <div class="media-content">
+          <div class="content">
+            <p><strong>CASAREAL</strong><br>
+                内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容<br>
+                <small><a>Like</a> · <a>Reply</a> · 3 hrs</small>
+              </p>
+          </div>
+          <article class="media">
+              <figure class="media-left">
+                <p class="image is-48x48">
+                    <img src="http://placehold.it/96x96" class="is-rounded">
+                </p>
+              </figure>
+              <div class="media-content">
+                <div class="content">
+                  <p><strong>Sean Brown</strong><br>
+                      コメントコメントコメントコメントコメントコメントコメントコメントコメントコメント<br>
+                      <small><a>Like</a> · <a>Reply</a> · 2 hrs</small>
+                  </p>
+                </div>
+                <article class="media">
+                    リプライリプライリプライリプライリプライリプライリプライリプライリプライリプライ。
+                </article>
+                <article class="media">
+                    リプライリプライリプライリプライリプライリプライリプライリプライリプライリプライ。
+                </article>
+              </div>
+          </article>
+      </div>
+    </article>
+    <article class="box media">
+      <figure class="media-left">
+          <p class="image is-48x48">
+            <img src="http://placehold.it/96x96" class="is-rounded">
+          </p>
+      </figure>
+      <div class="media-content">
+          <div class="content">
+            <p><strong>CASAREAL</strong><br>
+              内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容<br>
+              <small><a>Like</a> · <a>Reply</a> · 2 hrs</small>
+            </p>
+          </div>
+      </div>
+    </article>
+    <article class="box media">
+      <figure class="media-left">
+          <p class="image is-64x64">
+            <img src="http://placehold.it/128x128" class="is-rounded">
+          </p>
+      </figure>
+      <div class="media-content">
+          <div class="content">
+            <p><strong>CASAREAL</strong><br>
+                内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容<br>
+                <small><a>Like</a> · <a>Reply</a> · 3 hrs</small>
+              </p>
+          </div>
+          <article class="media">
+              <figure class="media-left">
+                <p class="image is-48x48">
+                    <img src="http://placehold.it/96x96" class="is-rounded">
+                </p>
+              </figure>
+              <div class="media-content">
+                <div class="content">
+                  <p><strong>Sean Brown</strong><br>
+                      コメントコメントコメントコメントコメントコメントコメントコメントコメントコメント<br>
+                      <small><a>Like</a> · <a>Reply</a> · 2 hrs</small>
+                  </p>
+                </div>
+                <article class="media">
+                    リプライリプライリプライリプライリプライリプライリプライリプライリプライリプライ。
+                </article>
+                <article class="media">
+                    リプライリプライリプライリプライリプライリプライリプライリプライリプライリプライ。
+                </article>
+              </div>
+          </article>
+      </div>
+    </article>
+    <article class="box media">
+      <figure class="media-left">
+          <p class="image is-48x48">
+            <img src="http://placehold.it/96x96" class="is-rounded">
+          </p>
+      </figure>
+      <div class="media-content">
+          <div class="content">
+            <p><strong>CASAREAL</strong><br>
+              内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容<br>
+              <small><a>Like</a> · <a>Reply</a> · 2 hrs</small>
+            </p>
+          </div>
+      </div>
+    </article>
+    <article class="box media">
+      <figure class="media-left">
+          <p class="image is-64x64">
+            <img src="http://placehold.it/128x128" class="is-rounded">
+          </p>
+      </figure>
+      <div class="media-content">
+          <div class="content">
+            <p><strong>CASAREAL</strong><br>
+                内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容<br>
+                <small><a>Like</a> · <a>Reply</a> · 3 hrs</small>
+              </p>
+          </div>
+          <article class="media">
+              <figure class="media-left">
+                <p class="image is-48x48">
+                    <img src="http://placehold.it/96x96" class="is-rounded">
+                </p>
+              </figure>
+              <div class="media-content">
+                <div class="content">
+                  <p><strong>Sean Brown</strong><br>
+                      コメントコメントコメントコメントコメントコメントコメントコメントコメントコメント<br>
+                      <small><a>Like</a> · <a>Reply</a> · 2 hrs</small>
+                  </p>
+                </div>
+                <article class="media">
+                    リプライリプライリプライリプライリプライリプライリプライリプライリプライリプライ。
+                </article>
+                <article class="media">
+                    リプライリプライリプライリプライリプライリプライリプライリプライリプライリプライ。
+                </article>
+              </div>
+          </article>
+      </div>
+    </article>
+    <article class="box media">
+      <figure class="media-left">
+          <p class="image is-48x48">
+            <img src="http://placehold.it/96x96" class="is-rounded">
+          </p>
+      </figure>
+      <div class="media-content">
+          <div class="content">
+            <p><strong>CASAREAL</strong><br>
+              内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容<br>
+              <small><a>Like</a> · <a>Reply</a> · 2 hrs</small>
+            </p>
+          </div>
+      </div>
+    </article>
 
 
-<p><%= @book.title %></p>
-
-<%= link_to 'Edit', edit_book_path(@book) %> |
-<%= link_to 'Back', books_path %>
+  </div>
+</main>

@@ -1,0 +1,14 @@
+<%= form_with(model: output, local: true) do |form| %>
+
+  <div class="field">
+    <div class="control">
+      <%= form.label :body, "アウトプット"%>
+      <span class="has-text-danger">*</span>
+      <%= form.text_area :body, class: "input is-medium textbox textarea textboxcss", required: true %>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

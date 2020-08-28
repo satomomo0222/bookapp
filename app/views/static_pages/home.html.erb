@@ -1,17 +1,35 @@
 <% provide(:title, "Home") %>
 
-<div class="hero is-info is-bold">
-   <div class="hero-body">
-       <div class="container">
+<section class="hero is-info is-default is-bold mb-5">
+  <div class="hero-body">
+      <div class="container has-text-centered">
           <h1 class="title">今週の課題図書</h1>
-
-          <div class="container">
-            ここに今週の課題図書の画像と紹介文を載せます。課題図書データベースからデータを持ってきます。Amazonと楽天のアソシエイト購入ボタンも設置しておきます。
+          <div class="columns is-vcentered">
+              <div class="column is-3 is-offset-2">
+                  <figure class="image is-4by4 container is-centered">
+                    <%= attachment_image_tag @book, :book_image, fallback: "no-image", class:"" %>
+                  </figure>
+                  <%= @book.id %>
+              </div>
+              <div class="column is-7">
+                  <h1 class="title is-2">
+                    <%= @book.title %>
+                  </h1>
+                  <h2 class="subtitle is-4">
+                      <%= @book.body %>
+                  </h2>
+                  <br>
+                  <p class="has-text-centered">
+                      <a class="button is-medium is-light is-outlined">
+                          購入する
+                      </a>
+                      <%= link_to '編集する（管理者権限）', edit_book_path(@book), class:"button is-medium is-light is-outlined" %>
+                  </p>
+              </div>
           </div>
-
-       </div>
-   </div>
-</div>
+      </div>
+  </div>
+</section>
 
 <main class="columns">
   <div class="submenu column is-3">
@@ -42,12 +60,14 @@
     <aside class="box menu">
       <p class="menu-label">来週の課題図書</p>
       <div class="box">
-        来週の課題図書の画像が入ります
+        <figure class="image is-4by4 container is-centered">
+          <%= attachment_image_tag @book, :book_image, fallback: "no-image", class:"" %>
+        </figure>
       </div>
       <p class="menu-label">タイトル</p>
-      <div class="is-size-5 title">TITLE</div>
+      <div class="is-size-5 title"><%= @book.title %></div>
       <p class="menu-label">説明</p>
-      <div>全米が涙したベストセラー。</div>
+      <div><%= @book.body %></div>
    </aside>
   </div>
 

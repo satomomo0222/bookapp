@@ -5,82 +5,44 @@
   <% provide(:title, "#{@user.username}") %>
 <% end %>
 
-<div class="hero is-info is-bold">
+<section class="hero is-info is-default is-bold mb-5">
   <div class="hero-body">
-    <div class="columns is-centered is-vcentered">
-      <div class="column is-2 is-offset-2">
-          <figure class="image is-128x128 container is-centered">
+    <div class="container ">
+      <div class="columns is-vcentered">
+        <div class="column is-3 is-offset-2">
+          <figure class="image is-4by4 container is-centered">
             <%= attachment_image_tag @user, :profile_image, fallback: "no-image", class:"is-rounded" %>
           </figure>
-      </div>
-      <div class="column is-7 is-offset-1">
-        <div class="container is-centered">
-          <ul>
-            <li class="is-size-2">
-              <%= @user.username %>
-            </li>
-            <li class="">
-              <%= @user.profile %>
-            </li>
-          </ul>
+        </div>
+        <div class="column is-6 is-offset-1">
+          <p class="has-text-right">
+            <% if user_signed_in? && @user.id == current_user.id %>
+              <%= link_to 'プロフィール編集', profile_edit_path ,method: :get, class:"button is-medium is-light is-outlined" %>
+            <% end %>
+          </p>
+          <h1 class="title is-2">
+            <%= @user.username %>
+          </h1>
+          <h2 class="subtitle is-4">
+            <%= @user.profile %>
+          </h2>
+          <% if @user.twitter?%>
+            <%= link_to 'Twitter', @user.twitter ,method: :get, class:"button is-small is-light is-outlined" %>
+          <% end %>
+          <% if @user.instagram?%>
+            <%= link_to 'Instagram', @user.instagram ,method: :get, class:"button is-small is-light is-outlined" %>
+          <% end %>
+          <% if @user.facebook?%>
+            <%= link_to 'Facebook', @user.facebook ,method: :get, class:"button is-small is-light is-outlined" %>
+          <% end %>
+          <% if @user.website?%>
+            <%= link_to 'WEBサイト', @user.website ,method: :get, class:"button is-small is-light is-outlined" %>
+          <% end %>
         </div>
       </div>
     </div>
-    <div class="columns">
-      <div class="column is-7 is-offset-5">
-        <table>
-          <% if @user.twitter?%>
-          <tr>
-            <th>
-              Twitter
-            </th>
-            <td>
-              <%= @user.twitter %>
-            </td>
-          </tr>
-          <% end %>
-          <% if @user.instagram?%>
-          <tr>
-            <th>
-              Instagram
-            </th>
-            <td>
-              <%= @user.instagram %>
-            </td>
-          </tr>
-          <% end %>
-          <% if @user.facebook?%>
-          <tr>
-            <th>
-              Facebook
-            </th>
-            <td>
-              <%= @user.facebook %>
-            </td>
-          </tr>
-          <% end %>
-          <% if @user.website?%>
-          <tr>
-            <th>
-              WEBサイト
-            </th>
-            <td>
-              <%= @user.website %>
-            </td>
-          </tr>
-          <% end %>
-        </table>
-        <% if user_signed_in? && @user.id == current_user.id %>
-          <%= link_to 'プロフィール編集', profile_edit_path ,method: :get, class:"button is-light" %>
-        <% end %>
-      </div>
-    </div>
-
-
-
   </div>
-</div>
-
+</section>
 
 <div class="hero is-bold">
   <div class="hero-body level">
@@ -97,43 +59,37 @@
     </div>
   </div>
 </div>
-<div class="container is-fluid">
-  <p class="">
-    流石に上部デザインがダサすぎるから、どっかのテンプレートを使おう。
-    下はこんな感じで、この人が投稿したアウトプットと課題図書を一緒に表示させる。課題図書とアウトプットデータベースから持ってくる。
-    画像はその本のアウトプットページ、文章はこのアウトプット詳細ページへのリンクにする。
-  </p>
 
-  <section class="section">
-    <div class="container">
-      <div class="columns is-multiline">
-        <% @users.each do |user| %>
-          <div class="column is-3">
-            <div class="card">
-              <div class="card-content">
-                <div class="card-image">
-                  <figure class="image">
-                    <%= link_to user_path(user) do %>
-                      <%= attachment_image_tag user, :profile_image, fallback: "no-image.png" %>
-                    <% end %>
-                  </figure>
+<section class="section">
+  <div class="container">
+    <div class="columns is-multiline">
+      <% @books.each do |book| %>
+        <div class="column is-3">
+          <div class="card">
+            <div class="card-content">
+              <div class="card-image">
+                <figure class="image">
+                  <%= link_to book_path(book) do %>
+                    <%= attachment_image_tag book, :book_image, fallback: "no-image.png" %>
+                  <% end %>
+                </figure>
+              </div>
+            </div>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-content">
+                  <div class="title"><%=link_to book.title, book_path(book) %></div>
                 </div>
               </div>
-              <div class="card-content">
-                <div class="media">
-                  <div class="media-content">
-                    <div class="title">Title</div>
-                  </div>
-                </div>
-                <div class="content">
-                  アウトプットが入ります
-                </div>
+              <div class="content">
+                book.id：<%= book.id %><br/>
+                説明：<%= book.body %><br/>
+                <%= link_to 'Edit', edit_book_path(book) %>｜<%= link_to 'Destroy', book, method: :delete, data: { confirm: '本当に削除しますか？' } %>
               </div>
             </div>
           </div>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
     </div>
-  </section>
-
-</div>
+  </div>
+</section>
