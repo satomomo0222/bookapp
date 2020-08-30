@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
-    if current_user.username?
+    if resource.is_a?(Adminuser) || current_user.username?
       flash[:notice] = "ログインに成功しました" 
       root_url  #指定したいパスに変更
     else

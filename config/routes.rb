@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   # devise_for :adminusers
-  # devise_for :adminusers, controllers: {
-  #   sessions: 'adminusers/sessions',
-  #   :registrations => 'adminusers/registrations',
-  #   :passwords => 'adminusers/passwords'
-  # }
+  devise_for :adminusers, controllers: {
+    sessions: 'adminusers/sessions',
+    :registrations => 'adminusers/registrations',
+    :passwords => 'adminusers/passwords'
+  }
   # namespace :admin do
   #     resources :adminusers
   #     resources :users

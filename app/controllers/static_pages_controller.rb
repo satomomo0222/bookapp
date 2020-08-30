@@ -3,6 +3,7 @@ class StaticPagesController < ApplicationController
 
   def home
     @user = current_user
+    # p adminuser_signed_in?
   end
 
   def about

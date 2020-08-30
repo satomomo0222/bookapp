@@ -45,6 +45,9 @@
       <%= link_to root_path, class: "navbar-item" do %>
         <h1 class="title is-4 has-text-white">読書習慣</h1>
       <% end %>
+      <% if adminuser_signed_in? %>
+        <%= link_to '管理者ログアウト',destroy_adminuser_session_path, method: :delete, class:"navbar-item button is-warning" %>
+      <% end %>
       <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
         <span></span>
         <span></span>
