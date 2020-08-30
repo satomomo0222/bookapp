@@ -7,23 +7,23 @@
           <div class="columns is-vcentered">
               <div class="column is-3 is-offset-2">
                   <figure class="image is-4by4 container is-centered">
-                    <%= attachment_image_tag @book, :book_image, fallback: "no-image", class:"" %>
+                    <%= attachment_image_tag @thisweek, :book_image, fallback: "no-image", class:"" %>
                   </figure>
-                  <%= @book.id %>
+                  <%= @thisweek.id %>
               </div>
               <div class="column is-7">
                   <h1 class="title is-2">
-                    <%= @book.title %>
+                    <%= @thisweek.title %>
                   </h1>
                   <h2 class="subtitle is-4">
-                      <%= @book.body %>
+                      <%= @thisweek.body %>
                   </h2>
                   <br>
                   <p class="has-text-centered">
                       <a class="button is-medium is-light is-outlined">
                           購入する
                       </a>
-                      <%= link_to '編集する（管理者権限）', edit_book_path(@book), class:"button is-medium is-light is-outlined" %>
+                      <%= link_to '編集する（管理者権限）', edit_book_path(@thisweek), class:"button is-medium is-light is-outlined" %>
                   </p>
               </div>
           </div>
@@ -61,13 +61,13 @@
       <p class="menu-label">来週の課題図書</p>
       <div class="box">
         <figure class="image is-4by4 container is-centered">
-          <%= attachment_image_tag @book, :book_image, fallback: "no-image", class:"" %>
+          <%= attachment_image_tag @nextweek, :book_image, fallback: "no-image", class:"" %>
         </figure>
       </div>
       <p class="menu-label">タイトル</p>
-      <div class="is-size-5 title"><%= @book.title %></div>
+      <div class="is-size-5 title"><%= @nextweek.title %></div>
       <p class="menu-label">説明</p>
-      <div><%= @book.body %></div>
+      <div><%= @nextweek.body %></div>
    </aside>
   </div>
 

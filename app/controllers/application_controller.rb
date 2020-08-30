@@ -10,4 +10,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def set_side
+    books = Book.created_desc.first(2)
+    @thisweek = books[1]
+    @nextweek = books[0]
+  end
+
 end

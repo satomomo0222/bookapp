@@ -60,25 +60,25 @@
       <p class="menu-label">今週の課題図書</p>
       <div class="box">
         <figure class="image is-4by4 container is-centered">
-          <%= attachment_image_tag @book, :book_image, fallback: "no-image", class:"" %>
+          <%= attachment_image_tag @thisweek, :book_image, fallback: "no-image", class:"" %>
         </figure>
       </div>
       <p class="menu-label">タイトル</p>
-      <div class="is-size-5 title"><%= @book.title %></div>
+      <div class="is-size-5 title"><%= @thisweek.title %></div>
       <p class="menu-label">説明</p>
-      <div><%= @book.body %></div>
+      <div><%= @thisweek.body %></div>
    </aside>
     <aside class="box menu">
       <p class="menu-label">来週の課題図書</p>
       <div class="box">
         <figure class="image is-4by4 container is-centered">
-          <%= attachment_image_tag @book, :book_image, fallback: "no-image", class:"" %>
+          <%= attachment_image_tag @nextweek, :book_image, fallback: "no-image", class:"" %>
         </figure>
       </div>
       <p class="menu-label">タイトル</p>
-      <div class="is-size-5 title"><%= @book.title %></div>
+      <div class="is-size-5 title"><%= @nextweek.title %></div>
       <p class="menu-label">説明</p>
-      <div><%= @book.body %></div>
+      <div><%= @nextweek.body %></div>
    </aside>
   </div>
 

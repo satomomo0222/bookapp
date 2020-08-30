@@ -60,3 +60,6 @@ gem "refile-mini_magick"
 gem "bulma-rails"
 # 日本語化
 gem 'rails-i18n'
+
+# 管理者画面のgem
+gem "administrate"

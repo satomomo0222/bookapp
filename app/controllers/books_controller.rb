@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
+  before_action :set_side, only: [:show]
   #ここで管理者権限を与える
 
   # GET /books
@@ -11,6 +12,7 @@ class BooksController < ApplicationController
   # GET /books/1
   # GET /books/1.json
   def show
+    @user = current_user
   end
 
   # GET /books/new
