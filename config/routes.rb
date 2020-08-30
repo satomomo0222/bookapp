@@ -1,18 +1,18 @@
 Rails.application.routes.draw do
+  namespace :admin do
+      resources :adminusers
+      resources :users
+      resources :outputs
+      resources :books
+
+      root to: "adminusers#index"
+    end
   # devise_for :adminusers
   devise_for :adminusers, controllers: {
     sessions: 'adminusers/sessions',
     :registrations => 'adminusers/registrations',
     :passwords => 'adminusers/passwords'
   }
-  # namespace :admin do
-  #     resources :adminusers
-  #     resources :users
-  #     resources :outputs
-  #     resources :books
-
-  #     root to: "adminusers#index"
-  # end
   resources :outputs
   resources :books
   devise_for :users
