@@ -2,5 +2,5 @@
 
 <%= render 'form', output: @output %>
 
-<%= link_to 'Show', @output %> |
-<%= link_to 'Back', outputs_path %>
+<%= link_to 'Show', book_output_path(output.book_id, output.id) %> |
+<%= link_to 'Back', book_output_path(@output) %>

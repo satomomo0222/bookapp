@@ -3,7 +3,7 @@ class StaticPagesController < ApplicationController
 
   def home
     @user = current_user
-    # p adminuser_signed_in?
+    @outputs = Output.where(book_id: @thisweek.id)
   end
 
   def about
