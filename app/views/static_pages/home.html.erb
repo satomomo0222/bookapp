@@ -2,32 +2,32 @@
 
 <section class="hero is-info is-default is-bold mb-5">
   <div class="hero-body">
-      <div class="container has-text-centered">
-          <h1 class="title">今週の課題図書</h1>
-          <div class="columns is-vcentered">
-              <div class="column is-3 is-offset-2">
-                  <figure class="image is-4by4 container is-centered">
-                    <%= attachment_image_tag @thisweek, :book_image, fallback: "no-image", class:"" %>
-                  </figure>
-                  <%= @thisweek.id %>
-              </div>
-              <div class="column is-7">
-                  <h1 class="title is-2">
-                    <%= @thisweek.title %>
-                  </h1>
-                  <h2 class="subtitle is-4">
-                      <%= @thisweek.body %>
-                  </h2>
-                  <br>
-                  <p class="has-text-centered">
-                      <a class="button is-medium is-light is-outlined">
-                          購入する
-                      </a>
-                      <%= link_to 'アウトプットする', new_book_output_path(@thisweek) , class:"button is-medium is-light is-outlined" %>
-                  </p>
-              </div>
-          </div>
+    <div class="container has-text-centered">
+      <h1 class="title">今週の課題図書</h1>
+      <div class="columns is-vcentered">
+        <div class="column is-3 is-offset-2">
+          <figure class="image is-4by4 container is-centered">
+            <%= attachment_image_tag @thisweek, :book_image, fallback: "no-image", class:"" %>
+          </figure>
+          <%= @thisweek.id %>
+        </div>
+        <div class="column is-7">
+          <h1 class="title is-2">
+            <%= @thisweek.title %>
+          </h1>
+          <h2 class="subtitle is-4">
+              <%= @thisweek.body %>
+          </h2>
+          <br>
+          <p class="has-text-centered">
+            <a class="button is-medium is-light is-outlined">
+              購入する
+            </a>
+            <%= link_to 'アウトプットする', new_book_output_path(@thisweek) , class:"button is-medium is-light is-outlined" %>
+          </p>
+        </div>
       </div>
+    </div>
   </div>
 </section>
 
@@ -51,7 +51,7 @@
         <p class="menu-label">集めたいいねの数</p>
       <% else %>
         <figure class="image is-128x128">
-            <%= attachment_image_tag @user, :profile_image, fallback: "no-image",class:"is-rounded" %>
+          <%= attachment_image_tag @user, :profile_image, fallback: "no-image",class:"is-rounded" %>
         </figure>
         <p class="menu-label">ニックネーム</p>
         <p class="is-size-5 has-text-dark">ゲストユーザー</p>
@@ -77,32 +77,45 @@
         <div class="is-size-4 has-text-weight-bold">みんなのアウトプット</div>
         <div class="level-item level-right">
           <div class="field has-addons">
-            <div class="control">
+            <%#= search_form_for (@q, url:book_search_path) do |f| %>
+              <div class="control">
                 <input class="input" type="text" name="search" placeholder="キーワード検索">
-            </div>
-            <div class="control">
+              </div>
+              <div class="control">
                 <a class="button is-info"><i class="fa fa-search"></i>検索</a>
-            </div>
+              </div>
+              <div class="control">
+                <%#= f.label :body, "Keyword" %>
+                <%#= f.search_field :body_cont %>
+              </div>
+              <div class="control">
+                <%#= f.submit "検索", class:"button is-info"%>
+              </div>
+              
+
+            <%# end %>
           </div>
         </div>
       </div>
     </div>
     <section class="level">
-      <div class="level-item  tabs">
-        <ul>
-         <li class="is-active"><a>新しい順</a></li>
-           <li><a>古い順</a></li>
-           <li><a>いいねが多い順</a></li>
-        </ul>
+      <div class="level-left">
+        <div class="level-item tabs">
+          <ul>
+            <li class="is-active"><a>全ての投稿</a></li>
+            <li><a>フォローした人の投稿</a></li>
+            <li><a>フォローした人がいいねした投稿</a></li>
+          </ul>
+        </div>
       </div>
-    </section>
-    <section class="level">
-      <div class="level-item  tabs">
-        <ul>
-         <li class="is-active"><a>全ての投稿</a></li>
-           <li><a>フォローした人の投稿</a></li>
-           <li><a>フォローした人がいいねした投稿</a></li>
-        </ul>
+      <div class="level-right">
+        <div class="level-item tabs">
+          <ul>
+            <li class="is-active"><a>新しい順</a></li>
+            <li><a>古い順</a></li>
+            <li><a>いいねが多い順</a></li>
+          </ul>
+        </div>
       </div>
     </section>
     <div class="container is-fluid">
@@ -112,42 +125,37 @@
     </div>
 
     <% @outputs.each do |output| %>
-      <div><%= output.body %></div>
-      <div><%= output.id %></div>
+    <% output_user = User.find(output.user_id) %>
       <article class="box media">
         <figure class="media-left">
-            <p class="image is-64x64">
-              <img src="http://placehold.it/128x128" class="is-rounded">
-            </p>
+          <%= link_to user_path(output_user) do %>
+            <figure class="image is-64x64">
+              <%= attachment_image_tag output_user, :profile_image, fallback: "no-image",class:"is-rounded" %>
+            </figure>
+          <% end %>
         </figure>
         <div class="media-content">
-            <div class="content">
-              <p><strong><%= User.find(output.user_id).username %></strong><br>
-                  <%= output.body %><br>
-                  <small><a>Like</a> · <a>Reply</a> · 3 hrs</small>
+          <div class="content">
+            <p><strong><%= output_user.username %></strong><br>
+              <%= output.body %><br>
+              <small><a>Like</a> · <a>Reply</a> · 3 hrs</small>
+            </p>
+          </div>
+          <article class="media">
+            <figure class="media-left">
+              <p class="image is-48x48">
+                <img src="http://placehold.it/96x96" class="is-rounded">
+              </p>
+            </figure>
+            <div class="media-content">
+              <div class="content">
+                <p><strong>Sean Brown</strong><br>
+                  コメントコメントコメントコメントコメントコメントコメントコメントコメントコメント<br>
+                  <small><a>Like</a> · <a>Reply</a> · 2 hrs</small>
                 </p>
+              </div>
             </div>
-            <article class="media">
-                <figure class="media-left">
-                  <p class="image is-48x48">
-                      <img src="http://placehold.it/96x96" class="is-rounded">
-                  </p>
-                </figure>
-                <div class="media-content">
-                  <div class="content">
-                    <p><strong>Sean Brown</strong><br>
-                        コメントコメントコメントコメントコメントコメントコメントコメントコメントコメント<br>
-                        <small><a>Like</a> · <a>Reply</a> · 2 hrs</small>
-                    </p>
-                  </div>
-                  <article class="media">
-                      リプライリプライリプライリプライリプライリプライリプライリプライリプライリプライ。
-                  </article>
-                  <article class="media">
-                      リプライリプライリプライリプライリプライリプライリプライリプライリプライリプライ。
-                  </article>
-                </div>
-            </article>
+          </article>
         </div>
       </article>
     <% end %>

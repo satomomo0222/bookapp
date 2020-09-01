@@ -15,5 +15,4 @@ class ApplicationController < ActionController::Base
     @thisweek = books[1]
     @nextweek = books[0]
   end
-
 end
