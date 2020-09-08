@@ -1,7 +1,7 @@
 class OutputsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
   before_action :set_output, only: [:show, :edit, :update, :destroy]
-  before_action :set_book, only: [:new, :create]
+  before_action :set_book, only: [:new, :show, :edit, :create]
 
   # GET /outputs
   # GET /outputs.json

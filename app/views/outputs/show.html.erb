@@ -45,7 +45,7 @@
             <%= @output.body %><br>
             <small><a>Like</a> · <a>Reply</a> · 3 hrs 
             <% if current_user == @output_user%>
-            · <%= link_to 'Edit', edit_book_output_path(@output) %>
+            · <%= link_to 'Edit', edit_book_output_path(@book, @output) %>
             <% end %>
             </small>
           </p>

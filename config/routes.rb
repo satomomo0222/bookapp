@@ -29,4 +29,7 @@ Rails.application.routes.draw do
     get 'users/edit',:to =>'devise/registrations#edit',:as => :user_root
   end
 
+  #キーワード検索後
+  post '/books/search', to:'books#search'
+      
 end

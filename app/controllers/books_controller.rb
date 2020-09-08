@@ -3,6 +3,10 @@ class BooksController < ApplicationController
   before_action :set_side, only: [:show]
   #ここで管理者権限を与える
 
+  def search
+    @books = Book.search_books({keyword: params[:search]})
+  end
+
   # GET /books
   # GET /books.json
   def index

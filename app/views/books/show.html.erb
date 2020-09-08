@@ -119,11 +119,13 @@
 
      <% @outputs.each do |output| %>
      <% output_user = User.find(output.user_id) %>
-      <%= link_to book_output_path(output.book_id, output.id) do %>
-      投稿詳細
-      <% end %>
         <article class="box media">
           <figure class="media-left">
+            <div>
+              <%= link_to book_output_path(output.book_id, output.id) do %>
+                投稿詳細
+              <% end %>
+            </div>
             <%= link_to user_path(output_user) do %>
               <figure class="image is-64x64">
                 <%= attachment_image_tag output_user, :profile_image, fallback: "no-image",class:"is-rounded" %>
@@ -137,6 +139,7 @@
                 <small><a>Like</a> · <a>Reply</a> · 3 hrs</small>
               </p>
             </div>
+            
             <article class="media">
               <figure class="media-left">
                 <p class="image is-48x48">
@@ -154,7 +157,7 @@
             </article>
           </div>
         </article>
-      <%# end %>
-    <% end %>
+      <% end %>
+    <%# end %>
   </div>
 </main>

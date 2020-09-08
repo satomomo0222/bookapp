@@ -34,13 +34,16 @@ module Admin
     # empty values into nil values. It uses other APIs such as `resource_class`
     # and `dashboard`:
     #
-    # def resource_params
-    #   params.require(resource_class.model_name.param_key).
-    #     permit(dashboard.permitted_attributes).
-    #     transform_values { |value| value == "" ? nil : value }
-    # end
+    def resource_params
+      params.require(:user).permit(:username,:profile,:profile_image,:twitter,:instagram,:facebook,:website,:output_ids, :email, :password, :password_confirmation)
+    end
 
     # See https://administrate-prototype.herokuapp.com/customizing_controller_actions
     # for more information
+
+    #http://blog.319ring.net/2016/05/14/custom_view_administrate/ このページでは、strong parametersを下のように設定していたが、うまく動作しなかったので、上のようにパスワードをpermitしたが、脆弱性が心配
+    # def permitted_attributes
+      # dashboard.permitted_attributes << %w(password password_confirmation)
+    # end
   end
 end

@@ -63,6 +63,3 @@ gem 'rails-i18n'
 
 # 管理者画面のgem
 gem "administrate"
-
-#検索機能・並び替え機能のgem
-gem 'ransack'
