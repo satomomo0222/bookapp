@@ -1,0 +1,9 @@
+<div class="field-unit__label">
+  <%= f.label field.attribute %>
+</div>
+<div class="field-unit__field">
+  <%= f.attachment_field :book_image, direct: field.direct, presigned: field.presigned, multiple: field.multiple %>
+</div>
+
+<%#= form.label :book_image, "表紙"%>
+<%#= form.attachment_field :book_image, class: "input is-light textbox is-rounded",placeholder: @book.book_image %>

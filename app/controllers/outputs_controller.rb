@@ -12,6 +12,7 @@ class OutputsController < ApplicationController
   # GET /outputs/1
   # GET /outputs/1.json
   def show
+    @output_user = User.find(@output.user_id)
   end
 
   # GET /outputs/new
@@ -21,8 +22,6 @@ class OutputsController < ApplicationController
 
   # GET /outputs/1/edit
   def edit
-    p @output
-    p @output.new_record?
   end
 
   # POST /outputs
@@ -69,7 +68,8 @@ class OutputsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_output
-      @output = Output.find(params[:id])
+      @output = Output.find_by(book_id:params[:book_id],id:params[:id])
+      # @output = Output.find(params[:id])
     end
     def set_book
       @book = Book.find(params[:book_id])

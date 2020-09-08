@@ -35,7 +35,7 @@ class UserDashboard < Administrate::BaseDashboard
     instagram: Field::Text,
     facebook: Field::Text,
     website: Field::Text,
-    profile_image_id: Field::String,
+    profile_image_id: Field::Refile,
   }.freeze
 
   # COLLECTION_ATTRIBUTES

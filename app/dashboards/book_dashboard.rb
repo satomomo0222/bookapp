@@ -12,7 +12,7 @@ class BookDashboard < Administrate::BaseDashboard
     id: Field::Number,
     title: Field::Text,
     body: Field::Text,
-    book_image_id: Field::String,
+    book_image_id: RefileField,
     amazon_url: Field::Text,
     rakuten_url: Field::Text,
     created_at: Field::DateTime,

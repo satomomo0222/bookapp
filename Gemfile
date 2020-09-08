@@ -63,8 +63,6 @@ gem 'rails-i18n'
 
 # 管理者画面のgem
 gem "administrate"
-#administrateとrefileを連携させるgem
-# gem 'administrate-field-refile'
 
 #検索機能・並び替え機能のgem
 gem 'ransack'
