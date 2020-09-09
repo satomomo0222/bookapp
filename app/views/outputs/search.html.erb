@@ -97,25 +97,21 @@
       </div>
     </div>
     <section class="level">
-      <div class="level-left">
-        <div class="level-item tabs">
-          <ul>
-            <li class="is-active"><a>全ての投稿</a></li>
-            <li><a>フォローした人の投稿</a></li>
-            <li><a>フォローした人がいいねした投稿</a></li>
-          </ul>
-        </div>
+      <div class="level-item  tabs">
+        <ul>
+         <li class="is-active"><a>新しい順</a></li>
+           <li><a>古い順</a></li>
+           <li><a>いいねが多い順</a></li>
+        </ul>
       </div>
-      <div class="level-right">
-        <div class="level-item tabs">
-          <ul>
-            <li class="is-active">
-              <%= link_to '新しい順', book_outputs_old_order_path(@book) %>
-            </li>
-            <%#<li><a>古い順</a></li>
-            <li><a>いいねが多い順</a></li>%>
-          </ul>
-        </div>
+    </section>
+    <section class="level">
+      <div class="level-item  tabs">
+        <ul>
+         <li class="is-active"><a>全ての投稿</a></li>
+           <li><a>フォローした人の投稿</a></li>
+           <li><a>フォローした人がいいねした投稿</a></li>
+        </ul>
       </div>
     </section>
 
@@ -138,7 +134,6 @@
             <div class="content">
               <p><strong><%= output_user.username %></strong><br>
                 <%= output.body %><br>
-                <%= output.created_at %><br>
                 <small><a>Like</a> · <a>Reply</a> · 3 hrs</small>
               </p>
             </div>

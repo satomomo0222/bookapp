@@ -1,12 +1,23 @@
 class OutputsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
   before_action :set_output, only: [:show, :edit, :update, :destroy]
-  before_action :set_book, only: [:new, :show, :edit, :create]
+  before_action :set_book, only: [:new, :show, :edit, :create, :search, :old_order, :good_order]
+  before_action :set_side
+
+
+  def search
+    @outputs = Output.where(book_id: params[:book_id]).search_outputs({keyword: params[:search]})
+  end
+
+  def old_order
+    @outputs = Output.where(book_id: @book.id).ordered_asc
+  end
+
 
   # GET /outputs
   # GET /outputs.json
   def index
-    @outputs = Output.all
+    @outputs = Output.all.ordered_desc
   end
 
   # GET /outputs/1

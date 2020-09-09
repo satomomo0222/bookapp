@@ -15,6 +15,9 @@ Rails.application.routes.draw do
   }
 
   resources :books do
+    post '/outputs/search', to:'outputs#search'
+    get '/outputs/old_order', to:'outputs#old_order'
+    get '/outputs/good_order', to:'outputs#good_order'
     resources :outputs
   end
   devise_for :users
@@ -31,5 +34,6 @@ Rails.application.routes.draw do
 
   #キーワード検索後
   post '/books/search', to:'books#search'
+  # post '/outputs/search', to:'outputs#search'
       
 end

@@ -46,7 +46,12 @@
         <h1 class="title is-4 has-text-white">読書習慣</h1>
       <% end %>
       <% if adminuser_signed_in? %>
-        <%= link_to '管理者ログアウト',destroy_adminuser_session_path, method: :delete, class:"navbar-item button is-warning" %>
+        <li class="navbar-item">
+          <%= link_to '管理者ログアウト',destroy_adminuser_session_path, method: :delete, class:"button is-warning" %>
+        </li>
+        <li class="navbar-item">
+          <%= link_to '管理者画面へ',admin_root_path, method: :get, class:"button is-primary" %>
+        </li>
       <% end %>
       <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
         <span></span>
