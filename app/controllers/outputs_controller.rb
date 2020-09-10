@@ -1,7 +1,7 @@
 class OutputsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
   before_action :set_output, only: [:show, :edit, :update, :destroy]
-  before_action :set_book, only: [:new, :show, :edit, :create, :search, :old_order, :good_order]
+  before_action :set_book, only: [:new, :create, :search, :old_order, :good_order]
   before_action :set_side
 
 
@@ -57,7 +57,7 @@ class OutputsController < ApplicationController
   def update
     respond_to do |format|
       if @output.update(output_params)
-        format.html { redirect_to book_output_path(@output.book_id, @output.id), notice: 'アウトプットが更新されました。' }
+        format.html { redirect_to output_path(@output.id), notice: 'アウトプットが更新されました。' }
         format.json { render :show, status: :ok, location: @output }
       else
         format.html { render :edit }
@@ -79,7 +79,7 @@ class OutputsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_output
-      @output = Output.find_by(book_id:params[:book_id],id:params[:id])
+      @output = Output.find_by(id:params[:id])
       # @output = Output.find(params[:id])
     end
     def set_book

@@ -124,10 +124,6 @@
         <article class="box media">
           <figure class="media-left">
             <div>
-              <%= link_to book_output_path(output.book_id, output.id) do %>
-                投稿詳細
-              <% end %>
-            </div>
             <%= link_to user_path(output_user) do %>
               <figure class="image is-64x64">
                 <%= attachment_image_tag output_user, :profile_image, fallback: "no-image",class:"is-rounded" %>
@@ -139,7 +135,11 @@
               <p><strong><%= output_user.username %></strong><br>
                 <%= output.body %><br>
                 <%= output.created_at %><br>
-                <small><a>Like</a> · <a>Reply</a> · 3 hrs</small>
+                <small><a>いいね</a> · <a>コメント</a> · 3 hrs <br>
+                <%= link_to 'もっと見る', output_path(output.id) %>
+                <% if current_user == output_user%>
+                · <%= link_to '投稿の編集', edit_output_path(output) %> · <%= link_to '投稿の削除', output_path(output.id), method: :delete, data: { confirm: '元に戻せませんが、削除してもいいですか？' } %>
+                <% end %>
               </p>
             </div>
             

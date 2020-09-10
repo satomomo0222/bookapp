@@ -14,12 +14,13 @@ Rails.application.routes.draw do
     :passwords => 'adminusers/passwords'
   }
 
-  resources :books do
+  resources :books, shallow: true do
     post '/outputs/search', to:'outputs#search'
     get '/outputs/old_order', to:'outputs#old_order'
     get '/outputs/good_order', to:'outputs#good_order'
     resources :outputs
   end
+
   devise_for :users
   root to:'static_pages#home'
   get '/about', to:'static_pages#about'
