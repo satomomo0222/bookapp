@@ -88,8 +88,18 @@
         <div class="is-size-4 has-text-weight-bold has-text-white">みんなのアウトプット</div>
         <div class="level-item level-right">
           <div class="field has-addons">
-            <%= form_with url: book_outputs_search_path(@book), class: "control", method: :post, local: true do |form| %>
-              <input class="input" type="text" name="search" placeholder="アウトプット検索">
+            <%
+              if @sort_order_word == "新しい順" 
+                sort = "0"
+              elsif @sort_order_word == "古い順" 
+                sort = "1"
+              else
+                sort = "2"
+              end 
+            %>
+            <%= form_with url: book_path(@book, sort: sort, search: @search), class: "control", method: :get, local: true do |form| %>
+              <input class="input" type="text" name="search" placeholder="アウトプット検索" value="<%= @search %>">
+              <input name="sort" type="hidden" value="<%= sort %>">
               <button type="submit" class="button is-info"><i class="fa fa-search"></i>検索</button>
             <% end %>
           </div>
@@ -110,10 +120,24 @@
         <div class="level-item tabs">
           <ul>
             <li class="is-active">
-              <%= link_to '新しい順', book_outputs_old_order_path(@book),class:"has-text-white"%>
+              <%
+                if @sort_order_word == "新しい順" 
+                  sort = "1"
+                elsif @sort_order_word == "古い順" 
+                  sort = "2"
+                else
+                  sort = "0"
+                end 
+              %>
+              <%= form_with url: book_path(@book, sort: sort, search: @search), class: "has-text-white", method: :get, local: true do |form| %>
+                
+                <input name="sort" type="hidden" value="<%= sort %>">             
+                <input name="search" type="hidden" value="<%= @search %>">             
+                <button type="submit" class="button">
+                  <%= @sort_order_word %>
+                </button>
+              <% end %>
             </li>
-            <%#<li><a>古い順</a></li>
-            <li><a>いいねが多い順</a></li>%>
           </ul>
         </div>
       </div>
@@ -142,7 +166,6 @@
                 <% else %>
                   <%= link_to 'いいね', output_favorites_path(output),method: :post %>
                 <% end %>
-
                 <%= output.favorites.count %>
                 · <a>コメント</a>
                 <%= link_to 'もっと見る', output_path(output.id) %>

@@ -25,6 +25,7 @@ Rails.application.routes.draw do
 
   devise_for :users
   root to:'static_pages#home'
+  # root '/', to:'books#show'
   get '/about', to:'static_pages#about'
   get '/profile/edit', to:'users#edit'
   post '/profile/edit', to:'users#update'
@@ -36,7 +37,5 @@ Rails.application.routes.draw do
   end
 
   #キーワード検索後
-  post '/books/search', to:'books#search'
-  # post '/outputs/search', to:'outputs#search'
-      
+  # post '/books/search', to:'books#search'      
 end

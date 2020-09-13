@@ -16,7 +16,24 @@ class BooksController < ApplicationController
   # GET /books/1
   # GET /books/1.json
   def show
-    @outputs = Output.where(book_id: @book.id).ordered_desc
+    if params[:search].present?
+      @search = params[:search]
+    end
+    if params[:sort].present?
+      sort_order = params[:sort]
+      if sort_order == "0"
+        @sort_order_word = "新しい順"
+      elsif sort_order == "1"
+        @sort_order_word = "古い順"
+      elsif sort_order == "2"
+        @sort_order_word = "いいねの多い順"
+      end
+    else
+      @sort_order_word = "新しい順"
+    end
+    @outputs = Output.search_outputs({keyword: params[:search], sort_order: params[:sort]}).where(book_id: @book.id)
+    # @outputs = Output.all.ordered_desc
+    # @outputs = Output.where(book_id: @book.id).ordered_desc
   end
 
   private

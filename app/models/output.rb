@@ -6,7 +6,18 @@ class Output < ApplicationRecord
   validates_uniqueness_of :book_id, scope: :user_id
 
   scope :search_outputs, -> query {
-    where('LOWER(outputs.body) LIKE LOWER(?)', "%#{query[:keyword]}%")
+    s = select("outputs.*")
+    if query[:keyword].present?
+      s = s.where('LOWER(outputs.body) LIKE LOWER(?)', "%#{query[:keyword]}%")
+    end
+    if query[:sort_order].blank? || query[:sort_order] == "0"
+      s = s.ordered_desc
+    elsif query[:sort_order] == "1"
+      s = s.ordered_asc
+    elsif query[:sort_order] == "2"
+      # s = s.sort {|a,b| b.favorites.count <=> a.favorites.count}
+    end
+    s
   }
 
   scope :ordered_asc, -> { order(created_at: :asc) }
