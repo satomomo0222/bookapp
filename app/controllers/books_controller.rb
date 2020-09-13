@@ -10,7 +10,10 @@ class BooksController < ApplicationController
   # GET /books
   # GET /books.json
   def index
-    @books = Book.all
+    if params[:search].present?
+      @search = params[:search]
+    end
+    @books = Book.search_books({keyword: params[:search]}).created_desc
   end
 
   # GET /books/1
@@ -32,8 +35,11 @@ class BooksController < ApplicationController
       @sort_order_word = "新しい順"
     end
     @outputs = Output.search_outputs({keyword: params[:search], sort_order: params[:sort]}).where(book_id: @book.id)
-    # @outputs = Output.all.ordered_desc
-    # @outputs = Output.where(book_id: @book.id).ordered_desc
+
+    if sort_order == "2"
+    @outputs = Output.search_outputs({keyword: params[:search], sort_order: params[:sort]}).where(book_id: @book.id).sort {|a,b| b.favorites.count <=> a.favorites.count}
+    end
+    
   end
 
   private

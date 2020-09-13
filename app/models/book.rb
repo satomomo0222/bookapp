@@ -14,5 +14,5 @@ class Book < ApplicationRecord
   scope :search_books, -> query {
     where('LOWER(books.title) LIKE LOWER(?)', "%#{query[:keyword]}%")
   }
-  
+
 end
