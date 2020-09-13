@@ -1,6 +1,7 @@
 class OutputsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
   before_action :set_output, only: [:show, :edit, :update, :destroy]
+  before_action :correct_user, only: [:edit, :update, :destroy]
   before_action :set_book, only: [:new, :create, :search, :old_order, :good_order]
   before_action :set_side
 
@@ -88,5 +89,8 @@ class OutputsController < ApplicationController
     def output_params
       # params.fetch(:output, {})
       params.require(:output).permit(:body)
+    end
+    def correct_user
+      redirect_to(root_url) unless @output.user == current_user
     end
 end
