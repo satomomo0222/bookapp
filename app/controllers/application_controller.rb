@@ -14,5 +14,6 @@ class ApplicationController < ActionController::Base
     books = Book.created_desc.first(2)
     @thisweek = books[1]
     @nextweek = books[0]
+    @user = current_user
   end
 end

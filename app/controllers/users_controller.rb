@@ -10,9 +10,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @users = User.all
     @books = Book.get_user_books({user_id: @user.id})
-    # @outputs = Output.where(user_id: @user.id)
-    # @books = Book.where(id: @outputs.book_id)
-
   end
 
   def edit

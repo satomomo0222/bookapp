@@ -1,16 +1,24 @@
 <%#= form_with(model: @output, local: true) do |form| %>
 <%#= form_with(model: @output, url: (@output.new_record? ? book_outputs_path(@book, @output) : book_output_path(@output)), local: true) do |form| %>
-<%= form_with(model: @output, url: (@output.new_record? ? book_outputs_path(@book, @output) : output_path(@output)), local: true) do |form| %>
 
-  <div class="field">
-    <div class="control">
-      <%= form.label :body, "アウトプット"%>
-      <span class="has-text-danger">*</span>
-      <%= form.text_area :body, class: "input is-medium textbox textarea textboxcss", required: true %>
+<section class="hero is-fullheight-with-navbar">
+  <div class="hero-body has-text-centered">
+    <div class="setup">
+      <%= form_with(model: @output, url: (@output.new_record? ? book_outputs_path(@book, @output) : output_path(@output)), local: true) do |form| %>
+
+        <div class="field">
+          <div class="control">
+            <%= form.label :body, "アウトプットを投稿する",class:"is-size-3 my-5 has-text-white is-inline"%>
+            <span class="has-text-danger">*</span>
+            <%= form.text_area :body, class: "input is-medium textbox textarea textboxcss my-5", required: true %>
+          </div>
+        </div>
+
+        <div class="actions">
+          <%= form.submit "投稿する",class:"button is-primary is-block is-fullwidth is-medium is-rounded" %>
+        </div>
+      <% end %>
+
     </div>
   </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</section>

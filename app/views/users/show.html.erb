@@ -5,7 +5,7 @@
   <% provide(:title, "#{@user.username}") %>
 <% end %>
 
-<section class="hero is-info is-default is-bold mb-5">
+<section class="hero is-default is-bold mb-5 parallax-bg">
   <div class="hero-body">
     <div class="container ">
       <div class="columns is-vcentered">
@@ -17,26 +17,26 @@
         <div class="column is-6 is-offset-1">
           <p class="has-text-right">
             <% if user_signed_in? && @user.id == current_user.id %>
-              <%= link_to 'プロフィール編集', profile_edit_path ,method: :get, class:"button is-medium is-light is-outlined" %>
+              <%= link_to 'プロフィール編集', profile_edit_path ,method: :get, class:"button is-medium is-light" %>
             <% end %>
           </p>
-          <h1 class="title is-2">
+          <h1 class="title is-2 has-text-white">
             <%= @user.username %>
           </h1>
-          <h2 class="subtitle is-4">
+          <h2 class="subtitle is-4 has-text-white">
             <%= @user.profile %>
           </h2>
           <% if @user.twitter?%>
-            <%= link_to 'Twitter', @user.twitter ,method: :get, class:"button is-small is-light is-outlined" %>
+            <%= link_to 'Twitter', @user.twitter ,method: :get, class:"button is-medium is-light" %>
           <% end %>
           <% if @user.instagram?%>
-            <%= link_to 'Instagram', @user.instagram ,method: :get, class:"button is-small is-light is-outlined" %>
+            <%= link_to 'Instagram', @user.instagram ,method: :get, class:"button is-medium is-light" %>
           <% end %>
           <% if @user.facebook?%>
-            <%= link_to 'Facebook', @user.facebook ,method: :get, class:"button is-small is-light is-outlined" %>
+            <%= link_to 'Facebook', @user.facebook ,method: :get, class:"button is-medium is-light" %>
           <% end %>
           <% if @user.website?%>
-            <%= link_to 'WEBサイト', @user.website ,method: :get, class:"button is-small is-light is-outlined" %>
+            <%= link_to 'WEBサイト', @user.website ,method: :get, class:"button is-medium is-light" %>
           <% end %>
         </div>
       </div>
@@ -46,8 +46,8 @@
 
 <div class="hero is-bold">
   <div class="hero-body level">
-    <div class="is-size-4 has-text-weight-bold">これまでのアウトプット</div>
-    <div class="level-item level-right">
+    <div class="is-size-4 has-text-weight-bold has-text-white title">これまでのアウトプット</div>
+    <%#<div class="level-item level-right">
       <div class="field has-addons">
         <div class="control">
             <input class="input" type="text" name="search" placeholder="キーワード検索">
@@ -56,7 +56,7 @@
             <a class="button is-info"><i class="fa fa-search"></i>検索</a>
         </div>
       </div>
-    </div>
+    </div>%>
   </div>
 </div>
 
@@ -84,7 +84,6 @@
               <div class="content">
                 book.id：<%= book.id %><br/>
                 説明：<%= book.body %><br/>
-                <%= link_to 'Edit', edit_book_path(book) %>｜<%= link_to 'Destroy', book, method: :delete, data: { confirm: '本当に削除しますか？' } %>
               </div>
             </div>
           </div>

@@ -40,7 +40,6 @@ class OutputsController < ApplicationController
   def create
     @output = @book.outputs.build(output_params)
     @output.user_id = current_user.id
-    #@output.book_id = @book.idにしたいけど、どこで@bookを判定して値を入れれば良いのか。books/show.htmlからbook_idを判定できればいいが、直接urlを入力されると判定できないのではないか。今週のアウトプットの画面から飛んできた場合も、if文でidを指定しなければいけない。架空のidを指定される可能性はあるのか。
     respond_to do |format|
       if @output.save
         format.html { redirect_to @book, notice: 'アウトプットを投稿しました。' }
@@ -71,7 +70,7 @@ class OutputsController < ApplicationController
   def destroy
     @output.destroy
     respond_to do |format|
-      format.html { redirect_to book_outputs_path(@output), notice: 'アウトプットが削除されました' }
+      format.html { redirect_to book_path(@output.book_id), notice: 'アウトプットが削除されました' }
       format.json { head :no_content }
     end
   end
@@ -85,7 +84,6 @@ class OutputsController < ApplicationController
     def set_book
       @book = Book.find(params[:book_id])
     end
-
     # Only allow a list of trusted parameters through.
     def output_params
       # params.fetch(:output, {})

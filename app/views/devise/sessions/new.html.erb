@@ -4,7 +4,7 @@
   <div class="hero-body has-text-centered">
     <div class="setup">
       <%# <img src="https://logoipsum.com/logo/logo-1.svg" width="325px" /> %>
-      <div class="is-size-3 my-5">ログイン</div>
+      <div class="is-size-3 my-5 has-text-white">ログイン</div>
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="field">
           <div class="control">
@@ -22,7 +22,7 @@
         </div>
 
           <% if devise_mapping.rememberable? %>
-            <div class="field">
+            <div class="field has-text-white">
               <%= f.check_box :remember_me %>
               <%= f.label :remember_me %>
             </div>

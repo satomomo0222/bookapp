@@ -18,7 +18,9 @@ Rails.application.routes.draw do
     post '/outputs/search', to:'outputs#search'
     get '/outputs/old_order', to:'outputs#old_order'
     get '/outputs/good_order', to:'outputs#good_order'
-    resources :outputs
+    resources :outputs do
+      resource :favorites, only: [:create, :destroy]
+    end
   end
 
   devise_for :users

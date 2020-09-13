@@ -1,9 +1,9 @@
 <% provide(:title, "Home") %>
 
-<section class="hero is-info is-default is-bold mb-5">
+<section class="hero is-default is-bold mb-5 parallax-bg">
   <div class="hero-body">
       <div class="container has-text-centered">
-          <h1 class="title">過去の課題図書</h1>
+          <h1 class="title has-text-white">過去の課題図書</h1>
           <div class="columns is-vcentered">
               <div class="column is-3 is-offset-2">
                   <figure class="image is-4by4 container is-centered">
@@ -11,10 +11,10 @@
                   </figure>
               </div>
               <div class="column is-7">
-                  <h1 class="title is-2">
+                  <h1 class="title is-2 has-text-white">
                     <%= @book.title %>
                   </h1>
-                  <h2 class="subtitle is-4">
+                  <h2 class="subtitle is-4 has-text-white">
                       <%= simple_format @book.body %>
                   </h2>
                   <br>
@@ -85,7 +85,7 @@
   <div class="column is-9">
     <div class="hero is-bold">
       <div class="hero-body level">
-        <div class="is-size-4 has-text-weight-bold">みんなのアウトプット</div>
+        <div class="is-size-4 has-text-weight-bold has-text-white">みんなのアウトプット</div>
         <div class="level-item level-right">
           <div class="field has-addons">
             <%= form_with url: book_outputs_search_path(@book), class: "control", method: :post, local: true do |form| %>
@@ -97,21 +97,25 @@
       </div>
     </div>
     <section class="level">
-      <div class="level-item  tabs">
-        <ul>
-         <li class="is-active"><a>新しい順</a></li>
-           <li><a>古い順</a></li>
-           <li><a>いいねが多い順</a></li>
-        </ul>
+      <div class="level-left">
+        <div class="level-item tabs">
+          <ul>
+            <li class="is-active"><a class="has-text-white">全ての投稿</a></li>
+            <li><a class="has-text-white">フォローした人の投稿</a></li>
+            <li><a class="has-text-white">フォローした人がいいねした投稿</a></li>
+          </ul>
+        </div>
       </div>
-    </section>
-    <section class="level">
-      <div class="level-item  tabs">
-        <ul>
-         <li class="is-active"><a>全ての投稿</a></li>
-           <li><a>フォローした人の投稿</a></li>
-           <li><a>フォローした人がいいねした投稿</a></li>
-        </ul>
+      <div class="level-right">
+        <div class="level-item tabs">
+          <ul>
+            <li class="is-active has-text-white">
+              <%= link_to '新しい順', book_outputs_old_order_path(@book),class:"has-text-white"%>
+            </li>
+            <%#<li><a>古い順</a></li>
+            <li><a>いいねが多い順</a></li>%>
+          </ul>
+        </div>
       </div>
     </section>
 
@@ -119,11 +123,6 @@
      <% output_user = User.find(output.user_id) %>
         <article class="box media">
           <figure class="media-left">
-            <div>
-              <%= link_to output_path(output.id) do %>
-                投稿詳細
-              <% end %>
-            </div>
             <%= link_to user_path(output_user) do %>
               <figure class="image is-64x64">
                 <%= attachment_image_tag output_user, :profile_image, fallback: "no-image",class:"is-rounded" %>
@@ -134,7 +133,14 @@
             <div class="content">
               <p><strong><%= output_user.username %></strong><br>
                 <%= output.body %><br>
-                <small><a>Like</a> · <a>Reply</a> · 3 hrs</small>
+                <%= output.created_at.strftime("%Y-%m-%d %H:%M") %><br>
+                <small><a>いいね</a> · <a>コメント</a>
+                <%= link_to 'もっと見る', output_path(output.id) %>
+                <% if current_user == output_user%>
+                · <%= link_to '投稿の編集', edit_output_path(output) %> · <%= link_to '投稿の削除', output_path(output.id), method: :delete, data: { confirm: '元に戻せませんが、削除してもいいですか？' } %>
+                <% end %>
+                
+                </small>
               </p>
             </div>
             

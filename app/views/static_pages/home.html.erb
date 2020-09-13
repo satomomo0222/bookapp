@@ -1,9 +1,10 @@
 <% provide(:title, "Home") %>
 
-<section class="hero is-warning is-default is-bold mb-5">
+
+<section class="hero is-default is-bold mb-5 parallax-bg">
   <div class="hero-body">
     <div class="container has-text-centered">
-      <h1 class="title">今週の課題図書</h1>
+      <h1 class="title has-text-white">今週の課題図書</h1>
       <div class="columns is-vcentered">
         <div class="column is-3 is-offset-2">
           <figure class="image is-4by4 container is-centered">
@@ -11,10 +12,10 @@
           </figure>
         </div>
         <div class="column is-7">
-          <h1 class="title is-2">
+          <h1 class="title is-2 has-text-white">
             <%= @thisweek.title %>
           </h1>
-          <h2 class="subtitle is-4">
+          <h2 class="subtitle is-4 has-text-white">
               <%= @thisweek.body %>
           </h2>
           <br>
@@ -73,7 +74,7 @@
   <div class="column is-9">
     <div class="hero is-bold">
       <div class="hero-body level">
-        <div class="is-size-4 has-text-weight-bold">みんなのアウトプット</div>
+        <div class="is-size-4 has-text-weight-bold has-text-white">みんなのアウトプット</div>
         <div class="level-item level-right">
           <div class="field has-addons">
             <div class="control">
@@ -90,27 +91,22 @@
       <div class="level-left">
         <div class="level-item tabs">
           <ul>
-            <li class="is-active"><a>全ての投稿</a></li>
-            <li><a>フォローした人の投稿</a></li>
-            <li><a>フォローした人がいいねした投稿</a></li>
+            <li class="is-active"><a class="has-text-white">全ての投稿</a></li>
+            <li><a class="has-text-white">フォローした人の投稿</a></li>
+            <li><a class="has-text-white">フォローした人がいいねした投稿</a></li>
           </ul>
         </div>
       </div>
       <div class="level-right">
         <div class="level-item tabs">
           <ul>
-            <li class="is-active"><a>新しい順</a></li>
-            <li><a>古い順</a></li>
-            <li><a>いいねが多い順</a></li>
+            <li class="is-active"><a class="has-text-white">新しい順</a></li>
+            <li><a class="has-text-white">古い順</a></li>
+            <li><a class="has-text-white">いいねが多い順</a></li>
           </ul>
         </div>
       </div>
     </section>
-    <div class="container is-fluid">
-      <p class="">
-        ここに投稿一覧を作る。絞り込みのデザインはこのままで、並び替えのデザインをボタン式にする。
-      </p>
-    </div>
 
     <% @outputs.each do |output| %>
     <% output_user = User.find(output.user_id) %>

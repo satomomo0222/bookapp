@@ -24,8 +24,8 @@
 
 :root {
   --shadowDark: #D9DDE6;
-  --background: #363636;
-  // --background: #E4E9F2;
+  --background: rgba(54, 54, 54, 50);
+  // --background: #363636;
   --shadowLight: #EFF5FE;
 }
 
@@ -63,3 +63,24 @@ a {
   font-size:1rem;
   font-weight: 400;
 }
+
+.parallax-bg{
+  box-sizing: border-box;
+  color: #FFF;
+  font-size: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 5%;
+  background-image: image-url("book.png");
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.columns{
+  margin: 0 !important; 
+}
+

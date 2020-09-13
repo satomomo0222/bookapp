@@ -1,9 +1,9 @@
 <% provide(:title, "投稿詳細") %>
 
-<section class="hero is-info is-default is-bold mb-5">
+<section class="hero is-default is-bold mb-5 parallax-bg is-fullheight-with-navbar">
   <div class="hero-body">
     <div class="container has-text-centered">
-      <h1 class="title">投稿詳細</h1>
+      <h1 class="title has-text-white">投稿詳細</h1>
     </div>
   </div>
 </section>
@@ -43,6 +43,7 @@
         <div class="content">
           <p><strong><%= @output_user.username %></strong><br>
             <%= @output.body %><br>
+            <%= @output.created_at.strftime("%Y-%m-%d %H:%M") %><br>
             <small><a>いいね</a> · <a>コメント</a> · 3 hrs <br>
 
             <% if current_user == @output_user%>
@@ -55,10 +56,10 @@
     </article>
 
 
-    <h1>コメント</h1>
-    <h1>ここにコメント入力フォームも作成するかなあ</h1>
+    <h1 class="has-text-white">コメント</h1>
+    <h1 class="has-text-white">ここにコメント入力フォームも作成するかなあ</h1>
 
-    <article class="media">
+    <article class="media has-text-white">
       <figure class="media-left">
         <p class="image is-48x48">
           <img src="http://placehold.it/96x96" class="is-rounded">

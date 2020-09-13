@@ -1,9 +1,16 @@
 <div class="field-unit__label">
   <%= f.label field.attribute %>
 </div>
-<div class="field-unit__field">
-  <%= f.attachment_field :profile_image, direct: field.direct, presigned: field.presigned, multiple: field.multiple %>
-</div>
-<%# <div class="field-unit__field"> %>
-  <%#= f.attachment_field :book_image, direct: field.direct, presigned: field.presigned, multiple: field.multiple %>
-<%# </div> %>
+
+<% if field.resource.is_a?(User)  %>
+
+  <div class="field-unit__field">
+    <%= f.attachment_field :profile_image, direct: field.direct, presigned: field.presigned, multiple: field.multiple %>
+  </div>
+
+<% else %>
+  <div class="field-unit__field">
+    <%= f.attachment_field :book_image, direct: field.direct, presigned: field.presigned, multiple: field.multiple %>
+  </div>
+
+<% end %>
