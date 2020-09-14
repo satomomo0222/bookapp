@@ -16,6 +16,9 @@
         </div>
         <div class="column is-6 is-offset-1">
           <p class="has-text-right">
+            <% if user_signed_in? %>
+            <%= render 'relationships/follow_button', user: @user %>
+            <% end %>
             <% if user_signed_in? && @user.id == current_user.id %>
               <%= link_to 'プロフィール編集', profile_edit_path ,method: :get, class:"button is-medium is-light" %>
             <% end %>

@@ -41,13 +41,23 @@
           </figure>
         <% end %>
         <p class="menu-label">ニックネーム</p>
-        <%= link_to user_path(current_user) do %>
-        <p class="is-size-5 has-text-dark"><%= @user.username %></p>
-        <% end %>
+          <%= link_to user_path(current_user) do %>
+            <p class="is-size-5 has-text-dark"><%= @user.username %></p>
+          <% end %>
         <p class="menu-label">フォロー</p>
+          <%= @user.followings.count%>
         <p class="menu-label">フォロワー</p>
+          <%= @user.followers.count%>
         <p class="menu-label">読んだ本の数</p>
+          <%= Output.where(user_id: @user.id).count %>
         <p class="menu-label">集めたいいねの数</p>
+          <% user_outputs = Output.where(user_id: @user.id)
+            n = 0
+            user_outputs.each do |output|
+              n = n + output.favorites.count
+            end 
+          %>
+          <%= n %>
       <% else %>
         <figure class="image is-128x128">
             <%= attachment_image_tag @user, :profile_image, fallback: "no-image",class:"is-rounded" %>
@@ -162,9 +172,13 @@
                 <small>
 
                 <% if user_signed_in? && current_user.already_favorited?(output) %>
-                  <%= link_to 'いいねを外す', output_favorites_path(output),method: :delete %>
+                  <%= link_to output_favorites_path(output),method: :delete do %>
+                    <i class="fas fa-heart"></i>
+                  <% end %>
                 <% else %>
-                  <%= link_to 'いいね', output_favorites_path(output),method: :post %>
+                  <%= link_to output_favorites_path(output),method: :post  do %>
+                    <i class="far fa-heart"></i>
+                  <% end %>
                 <% end %>
                 <%= output.favorites.count %>
                 · <a>コメント</a>

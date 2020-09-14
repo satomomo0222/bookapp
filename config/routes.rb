@@ -36,6 +36,9 @@ Rails.application.routes.draw do
     get 'users/edit',:to =>'devise/registrations#edit',:as => :user_root
   end
 
+  #フォロー機能
+  resources :relationships, only: [:create, :destroy]
+
   #キーワード検索後
   # post '/books/search', to:'books#search'      
 end

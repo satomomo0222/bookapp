@@ -23,4 +23,11 @@ class Output < ApplicationRecord
   scope :ordered_asc, -> { order(created_at: :asc) }
   scope :ordered_desc, -> { order(created_at: :desc) }
 
+  scope :get_user_outputs, -> query {
+    left_joins(:users)
+    .joins('LEFT OUTER JOIN "users" ON "users"."id" = "outputs"."user_id"')
+    .where(users:{id: query[:user_id]})
+    .group('books.id')
+  }
+
 end
