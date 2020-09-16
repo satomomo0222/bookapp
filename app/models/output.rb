@@ -15,7 +15,20 @@ class Output < ApplicationRecord
     elsif query[:sort_order] == "1"
       s = s.ordered_asc
     elsif query[:sort_order] == "2"
+      #ここでいいね順にソートできればよかったが、いいねの数なんてカラムはないのでソートできない
       # s = s.sort {|a,b| b.favorites.count <=> a.favorites.count}
+    end
+
+    if query[:narrow_down].blank? || query[:narrow_down] == "0"
+      s = s
+    elsif query[:narrow_down] == "1"
+      # s = s.get_followings_outputs
+      #Outputsのuser_idとcurrent_user.followingsのuser_idが一致するOutput
+      #left_joinかな
+    elsif query[:narrow_down] == "2"
+      # s = s
+      #current_user.followingsのuser_idとfavorite.user_idが一致するOutput.find(id:favorite.output_id)
+      #left_joinでつなげればいけそうな気もする
     end
     s
   }
@@ -29,5 +42,15 @@ class Output < ApplicationRecord
     .where(users:{id: query[:user_id]})
     .group('books.id')
   }
+
+  
+  # scope :get_followings_outputs, -> {
+  #   left_joins(:users)
+  #   .joins('LEFT OUTER JOIN "users" ON "users"."id" = "outputs"."user_id"')
+  #   .where(users:{id: current_user.followings.to_a.id})
+  #   .group('books.id')
+  # }
+
+
 
 end

@@ -15,4 +15,5 @@ class Book < ApplicationRecord
     where('LOWER(books.title) LIKE LOWER(?)', "%#{query[:keyword]}%")
   }
 
+
 end

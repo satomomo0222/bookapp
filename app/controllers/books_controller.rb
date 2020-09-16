@@ -34,12 +34,35 @@ class BooksController < ApplicationController
     else
       @sort_order_word = "新しい順"
     end
-    @outputs = Output.search_outputs({keyword: params[:search], sort_order: params[:sort]}).where(book_id: @book.id)
 
-    if sort_order == "2"
-    @outputs = Output.search_outputs({keyword: params[:search], sort_order: params[:sort]}).where(book_id: @book.id).sort {|a,b| b.favorites.count <=> a.favorites.count}
+
+    if params[:narrow_down].present?
+      @narrow_down = params[:narrow_down]
+    else
+      @narrow_down = "0"
+    end
+
+    if @narrow_down == "0"
+      #全ての投稿
+      @outputs = Output.search_outputs({keyword: params[:search], sort_order: params[:sort], narrow_down: params[:narrow_down]}).where(book_id: @book.id)
+      if sort_order == "2"
+        @outputs = Output.search_outputs({keyword: params[:search], sort_order: params[:sort], narrow_down: params[:narrow_down]}).where(book_id: @book.id).sort {|a,b| b.favorites.count <=> a.favorites.count}
+      end
+    elsif @narrow_down == "1"
+      #フォロー中の投稿
+      @outputs = Output.search_outputs({keyword: params[:search], sort_order: params[:sort], narrow_down: params[:narrow_down]}).where(book_id: @book.id)
+      if sort_order == "2"
+        @outputs = Output.search_outputs({keyword: params[:search], sort_order: params[:sort], narrow_down: params[:narrow_down]}).where(book_id: @book.id).sort {|a,b| b.favorites.count <=> a.favorites.count}
+      end
+    else
+      #フォロー中がいいねした投稿
+      @outputs = Output.search_outputs({keyword: params[:search], sort_order: params[:sort], narrow_down: params[:narrow_down]}).where(book_id: @book.id)
+      if sort_order == "2"
+        @outputs = Output.search_outputs({keyword: params[:search], sort_order: params[:sort], narrow_down: params[:narrow_down]}).where(book_id: @book.id).sort {|a,b| b.favorites.count <=> a.favorites.count}
+      end
     end
     
+
   end
 
   private

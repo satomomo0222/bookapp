@@ -107,9 +107,10 @@
                 sort = "2"
               end 
             %>
-            <%= form_with url: book_path(@book, sort: sort, search: @search), class: "control", method: :get, local: true do |form| %>
+            <%= form_with url: book_path(@book, sort: sort, search: @search, narrow_down:@narrow_down), class: "control", method: :get, local: true do |form| %>
               <input class="input" type="text" name="search" placeholder="アウトプット検索" value="<%= @search %>">
               <input name="sort" type="hidden" value="<%= sort %>">
+              <input name="narrow_down" type="hidden" value="<%= @narrow_down %>">
               <button type="submit" class="button is-info"><i class="fa fa-search"></i>検索</button>
             <% end %>
           </div>
@@ -120,9 +121,48 @@
       <div class="level-left">
         <div class="level-item tabs">
           <ul>
-            <li class="is-active"><a class="has-text-white">全ての投稿</a></li>
-            <li><a class="has-text-white">フォローした人の投稿</a></li>
-            <li><a class="has-text-white">フォローした人がいいねした投稿</a></li>
+            <%
+              if @sort_order_word == "新しい順" 
+                sort = "0"
+              elsif @sort_order_word == "古い順" 
+                sort = "1"
+              else
+                sort = "2"
+              end 
+            %>
+            <li>
+              <%= form_with url: book_path(@book, sort: sort, search: @search, narrow_down:0), class: "has-text-white", method: :get, local: true do |form| %>
+                <% @narrow_down = "0" %>
+                <input name="sort" type="hidden" value="<%= sort %>">
+                <input name="search" type="hidden" value="<%= @search %>">
+                <input name="narrow_down" type="hidden" value="<%= @narrow_down %>">
+                <button type="submit" class="button">
+                  全ての投稿
+                </button>
+              <% end %>
+            </li>
+            <li>
+              <%= form_with url: book_path(@book, sort: sort, search: @search, narrow_down:1), class: "has-text-white", method: :get, local: true do |form| %>
+                <% @narrow_down = "1" %>
+                <input name="narrow_down" type="hidden" value="<%= @narrow_down %>">
+                <input name="sort" type="hidden" value="<%= sort %>">             
+                <input name="search" type="hidden" value="<%= @search %>">             
+                <button type="submit" class="button">
+                  フォロー中の投稿
+                </button>
+              <% end %>
+            </li>
+            <li>
+              <%= form_with url: book_path(@book, sort: sort, search: @search, narrow_down:2), class: "has-text-white", method: :get, local: true do |form| %>
+                <% @narrow_down = "2" %>
+                <input name="narrow_down" type="hidden" value="<%= @narrow_down %>">
+                <input name="sort" type="hidden" value="<%= sort %>">             
+                <input name="search" type="hidden" value="<%= @search %>">             
+                <button type="submit" class="button">
+                  フォロー中がいいねした投稿
+                </button>
+              <% end %>
+            </li>
           </ul>
         </div>
       </div>
@@ -133,16 +173,20 @@
               <%
                 if @sort_order_word == "新しい順" 
                   sort = "1"
+                  @narrow_down = params[:narrow_down]
                 elsif @sort_order_word == "古い順" 
                   sort = "2"
+                  @narrow_down = params[:narrow_down]
                 else
                   sort = "0"
+                  @narrow_down = params[:narrow_down]
                 end 
               %>
-              <%= form_with url: book_path(@book, sort: sort, search: @search), class: "has-text-white", method: :get, local: true do |form| %>
+              <%= form_with url: book_path(@book, sort: sort, search: @search,narrow_down: @narrow_down), class: "has-text-white", method: :get, local: true do |form| %>
                 
                 <input name="sort" type="hidden" value="<%= sort %>">             
-                <input name="search" type="hidden" value="<%= @search %>">             
+                <input name="search" type="hidden" value="<%= @search %>">
+                <input name="narrow_down" type="hidden" value="<%= @narrow_down %>">
                 <button type="submit" class="button">
                   <%= @sort_order_word %>
                 </button>
