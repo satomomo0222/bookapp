@@ -141,28 +141,30 @@
                 </button>
               <% end %>
             </li>
-            <li>
-              <%= form_with url: book_path(@book, sort: sort, search: @search, narrow_down:1), class: "has-text-white", method: :get, local: true do |form| %>
-                <% @narrow_down = "1" %>
-                <input name="narrow_down" type="hidden" value="<%= @narrow_down %>">
-                <input name="sort" type="hidden" value="<%= sort %>">             
-                <input name="search" type="hidden" value="<%= @search %>">             
-                <button type="submit" class="button">
-                  フォロー中の投稿
-                </button>
-              <% end %>
-            </li>
-            <li>
-              <%= form_with url: book_path(@book, sort: sort, search: @search, narrow_down:2), class: "has-text-white", method: :get, local: true do |form| %>
-                <% @narrow_down = "2" %>
-                <input name="narrow_down" type="hidden" value="<%= @narrow_down %>">
-                <input name="sort" type="hidden" value="<%= sort %>">             
-                <input name="search" type="hidden" value="<%= @search %>">             
-                <button type="submit" class="button">
-                  フォロー中がいいねした投稿
-                </button>
-              <% end %>
-            </li>
+            <% if user_signed_in? %>
+              <li>
+                <%= form_with url: book_path(@book, sort: sort, search: @search, narrow_down:1), class: "has-text-white", method: :get, local: true do |form| %>
+                  <% @narrow_down = "1" %>
+                  <input name="narrow_down" type="hidden" value="<%= @narrow_down %>">
+                  <input name="sort" type="hidden" value="<%= sort %>">             
+                  <input name="search" type="hidden" value="<%= @search %>">             
+                  <button type="submit" class="button">
+                    フォロー中の投稿
+                  </button>
+                <% end %>
+              </li>
+              <li>
+                <%= form_with url: book_path(@book, sort: sort, search: @search, narrow_down:2), class: "has-text-white", method: :get, local: true do |form| %>
+                  <% @narrow_down = "2" %>
+                  <input name="narrow_down" type="hidden" value="<%= @narrow_down %>">
+                  <input name="sort" type="hidden" value="<%= sort %>">             
+                  <input name="search" type="hidden" value="<%= @search %>">             
+                  <button type="submit" class="button">
+                    フォロー中がいいねした投稿
+                  </button>
+                <% end %>
+              </li>
+            <% end %>
           </ul>
         </div>
       </div>

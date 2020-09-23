@@ -35,7 +35,5 @@ Rails.application.routes.draw do
 
   #フォロー機能
   resources :relationships, only: [:create, :destroy]
-
-  #キーワード検索後
-  # post '/books/search', to:'books#search'      
+  
 end

@@ -19,37 +19,29 @@ class Output < ApplicationRecord
       # s = s.sort {|a,b| b.favorites.count <=> a.favorites.count}
     end
 
-    if query[:narrow_down].blank? || query[:narrow_down] == "0"
-      s = s
-    elsif query[:narrow_down] == "1"
-      # s = s.get_followings_outputs
-      #Outputsのuser_idとcurrent_user.followingsのuser_idが一致するOutput
-      #left_joinかな
+    if query[:narrow_down] == "1"
+      s = s.left_joins(:user).joins('LEFT OUTER JOIN "relationships" ON "relationships"."follow_id" = "outputs"."user_id"')
+      if query[:current_user_id].present?
+        s = s.where(relationships:{user_id: query[:current_user_id]})
+      end
     elsif query[:narrow_down] == "2"
-      # s = s
-      #current_user.followingsのuser_idとfavorite.user_idが一致するOutput.find(id:favorite.output_id)
-      #left_joinでつなげればいけそうな気もする
+      s = s.left_joins(:user).joins('LEFT OUTER JOIN "favorites" ON "favorites"."output_id" = "outputs"."id"').joins('LEFT OUTER JOIN "relationships" ON "relationships"."follow_id" = "favorites"."user_id"')
+      if query[:current_user_id].present?
+        s = s.where(relationships:{user_id: query[:current_user_id]})
+      end
     end
     s
   }
 
   scope :ordered_asc, -> { order(created_at: :asc) }
   scope :ordered_desc, -> { order(created_at: :desc) }
-
-  scope :get_user_outputs, -> query {
+  
+  scope :get_followings_outputs, -> {
     left_joins(:users)
     .joins('LEFT OUTER JOIN "users" ON "users"."id" = "outputs"."user_id"')
-    .where(users:{id: query[:user_id]})
+    .where(users:{id: current_user.followings.to_a.id})
     .group('books.id')
   }
-
-  
-  # scope :get_followings_outputs, -> {
-  #   left_joins(:users)
-  #   .joins('LEFT OUTER JOIN "users" ON "users"."id" = "outputs"."user_id"')
-  #   .where(users:{id: current_user.followings.to_a.id})
-  #   .group('books.id')
-  # }
 
 
 

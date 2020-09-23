@@ -42,23 +42,28 @@ class BooksController < ApplicationController
       @narrow_down = "0"
     end
 
+    if user_signed_in?
+      query = {keyword: params[:search], sort_order: params[:sort], narrow_down: params[:narrow_down], current_user_id: current_user.id}
+    else
+      query = {keyword: params[:search], sort_order: params[:sort], narrow_down: params[:narrow_down]}
+    end
     if @narrow_down == "0"
       #全ての投稿
-      @outputs = Output.search_outputs({keyword: params[:search], sort_order: params[:sort], narrow_down: params[:narrow_down]}).where(book_id: @book.id)
+      @outputs = Output.search_outputs(query).where(book_id: @book.id)
       if sort_order == "2"
-        @outputs = Output.search_outputs({keyword: params[:search], sort_order: params[:sort], narrow_down: params[:narrow_down]}).where(book_id: @book.id).sort {|a,b| b.favorites.count <=> a.favorites.count}
+        @outputs = Output.search_outputs(query).where(book_id: @book.id).sort{|a,b| b.favorites.count <=> a.favorites.count}
       end
     elsif @narrow_down == "1"
       #フォロー中の投稿
-      @outputs = Output.search_outputs({keyword: params[:search], sort_order: params[:sort], narrow_down: params[:narrow_down]}).where(book_id: @book.id)
+      @outputs = Output.search_outputs(query).where(book_id: @book.id)
       if sort_order == "2"
-        @outputs = Output.search_outputs({keyword: params[:search], sort_order: params[:sort], narrow_down: params[:narrow_down]}).where(book_id: @book.id).sort {|a,b| b.favorites.count <=> a.favorites.count}
+        @outputs = Output.search_outputs(query).where(book_id: @book.id).sort {|a,b| b.favorites.count <=> a.favorites.count}
       end
     else
       #フォロー中がいいねした投稿
-      @outputs = Output.search_outputs({keyword: params[:search], sort_order: params[:sort], narrow_down: params[:narrow_down]}).where(book_id: @book.id)
+      @outputs = Output.search_outputs(query).where(book_id: @book.id)
       if sort_order == "2"
-        @outputs = Output.search_outputs({keyword: params[:search], sort_order: params[:sort], narrow_down: params[:narrow_down]}).where(book_id: @book.id).sort {|a,b| b.favorites.count <=> a.favorites.count}
+        @outputs = Output.search_outputs(query).where(book_id: @book.id).sort {|a,b| b.favorites.count <=> a.favorites.count}
       end
     end
     
