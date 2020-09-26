@@ -47,26 +47,13 @@ class BooksController < ApplicationController
     else
       query = {keyword: params[:search], sort_order: params[:sort], narrow_down: params[:narrow_down]}
     end
-    if @narrow_down == "0"
-      #全ての投稿
-      @outputs = Output.search_outputs(query).where(book_id: @book.id)
-      if sort_order == "2"
-        @outputs = Output.search_outputs(query).where(book_id: @book.id).sort{|a,b| b.favorites.count <=> a.favorites.count}
-      end
-    elsif @narrow_down == "1"
-      #フォロー中の投稿
-      @outputs = Output.search_outputs(query).where(book_id: @book.id)
-      if sort_order == "2"
-        @outputs = Output.search_outputs(query).where(book_id: @book.id).sort {|a,b| b.favorites.count <=> a.favorites.count}
-      end
+
+    #全ての投稿
+    if sort_order == "2"
+      @outputs = Output.search_outputs(query).where(book_id: @book.id).sort{|a,b| b.favorites.count <=> a.favorites.count}
     else
-      #フォロー中がいいねした投稿
       @outputs = Output.search_outputs(query).where(book_id: @book.id)
-      if sort_order == "2"
-        @outputs = Output.search_outputs(query).where(book_id: @book.id).sort {|a,b| b.favorites.count <=> a.favorites.count}
-      end
     end
-    
 
   end
 

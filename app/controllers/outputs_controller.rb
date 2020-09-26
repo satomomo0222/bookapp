@@ -5,11 +5,12 @@ class OutputsController < ApplicationController
   before_action :set_book, only: [:new, :create]
   before_action :set_side
 
-
   # GET /outputs/1
   # GET /outputs/1.json
   def show
     @output_user = User.find(@output.user_id)
+    @comments = @output.comments
+    @comment = Comment.new
   end
 
   # GET /outputs/new
@@ -31,6 +32,8 @@ class OutputsController < ApplicationController
         format.html { redirect_to @book, notice: 'アウトプットを投稿しました。' }
         format.json { render :show, status: :created, location: @book }
       else
+        @output.errors.messages.delete(:book_id)
+        @output.errors.add("投稿","がすでに存在しています。")
         format.html { render :new }
         format.json { render json: @output.errors, status: :unprocessable_entity }
       end

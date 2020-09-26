@@ -227,32 +227,34 @@
                   <% end %>
                 <% end %>
                 <%= output.favorites.count %>
-                · <a>コメント</a>
+                · 
                 <%= link_to 'もっと見る', output_path(output.id) %>
                 <% if current_user == output_user%>
                 · <%= link_to '投稿の編集', edit_output_path(output) %> · <%= link_to '投稿の削除', output_path(output.id), method: :delete, data: { confirm: '元に戻せませんが、削除してもいいですか？' } %>
                 <% end %>
               </p>
             </div>
-            
-            <article class="media">
-              <figure class="media-left">
-                <p class="image is-48x48">
-                  <img src="http://placehold.it/96x96" class="is-rounded">
-                </p>
-              </figure>
-              <div class="media-content">
-                <div class="content">
-                  <p><strong>Sean Brown</strong><br>
-                    コメントコメントコメントコメントコメントコメントコメントコメントコメントコメント<br>
-                    <small><a>Like</a> · <a>Reply</a> · 2 hrs</small>
-                  </p>
+            <% @comments = output.comments.limit(3) %>
+            <%= "コメントの一部" if @comments.present? %>
+            <% @comments.each do |c| %>
+              <% comment_user = User.find_by(id: c.user_id)%>
+              <article class="media">
+                <figure class="media-left">
+                  <figure class="image is-48x48">
+                    <%= attachment_image_tag comment_user, :profile_image, fallback: "no-image",class:"is-rounded" %>
+                  </figure>
+                </figure>
+                <div class="media-content">
+                  <div class="content">
+                    <p><strong><%= comment_user.username %></strong><br>
+                      <%= c.body %><br>
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </article>
+              </article>
+            <% end %>
           </div>
         </article>
       <% end %>
-    <%# end %>
   </div>
 </main>

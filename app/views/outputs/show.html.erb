@@ -21,10 +21,21 @@
         <%= link_to user_path(@output_user) do %>
         <p class="is-size-5 has-text-dark"><%= @output_user.username %></p>
         <% end %>
+
         <p class="menu-label">フォロー</p>
+          <%= @output_user.followings.count%>
         <p class="menu-label">フォロワー</p>
+          <%= @output_user.followers.count%>
         <p class="menu-label">読んだ本の数</p>
+          <%= Output.where(user_id: @output_user.id).count %>
         <p class="menu-label">集めたいいねの数</p>
+          <% user_outputs = Output.where(user_id: @output_user.id)
+            n = 0
+            user_outputs.each do |output|
+              n = n + output.favorites.count
+            end
+          %>
+          <%= n %>
 
           <% if user_signed_in? %>
             <%= render 'relationships/follow_button', user: @output_user %>
@@ -58,8 +69,7 @@
                 <i class="far fa-heart"></i>
               <% end %>
             <% end %>
-            <%= @output.favorites.count %>
-            · <a>コメント</a> · 3 hrs <br>
+            <%= @output.favorites.count %><br>
 
             <% if current_user == @output_user%>
             <%= link_to '投稿の編集', edit_output_path(@output) %> · <%= link_to '投稿の削除', output_path(output.id), method: :delete, data: { confirm: '元に戻せませんが、削除してもいいですか？' } %>
@@ -70,25 +80,39 @@
       </div>
     </article>
 
+    <h1 class="has-text-white mt-4 mb-4 title">コメント一覧</h1>
 
-    <h1 class="has-text-white">コメント</h1>
-    <h1 class="has-text-white">ここにコメント入力フォームも作成するかなあ</h1>
+    <% @comments.each do |c| %>
+      <% comment_user = User.find_by(id: c.user_id)%>
+      <article class="media has-text-white">
+        <figure class="media-left">
+          <figure class="image is-48x48">
+            <%= attachment_image_tag comment_user, :profile_image, fallback: "no-image",class:"is-rounded" %>
+          </figure>
+        </figure>
+        <div class="media-content">
+          <div class="content">
+            <p class="has-text-white"><strong class="has-text-white"><%= comment_user.username %></strong><br>
+              <%= c.body %><br>
+            </p>
+          </div>
+        </div>
+      </article>
+    <% end %>
+    
 
-    <article class="media has-text-white">
-      <figure class="media-left">
-        <p class="image is-48x48">
-          <img src="http://placehold.it/96x96" class="is-rounded">
-        </p>
-      </figure>
-      <div class="media-content">
-        <div class="content">
-          <p><strong>Sean Brown</strong><br>
-            コメントコメントコメントコメントコメントコメントコメントコメントコメントコメント<br>
-            <small><a>Like</a> · <a>Reply</a> · 2 hrs</small>
-          </p>
+    <%= form_with model: @comment, url: output_comments_path(@output), local: true, method: :post do |form| %>
+
+      <div class="field">
+        <div class="control">
+          <%= form.text_area :body, class: "input is-medium textbox textarea textboxcss my-5", required: true %>
+          <%= form.hidden_field :output_id, value: @output.id %>
         </div>
       </div>
-    </article>
 
+      <div class="actions">
+        <%= form.submit "コメントする",class:"button is-primary is-block is-fullwidth is-medium is-rounded" %>
+      </div>
+    <% end %>
   </div>
 </main>

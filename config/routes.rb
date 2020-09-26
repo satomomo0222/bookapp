@@ -16,7 +16,8 @@ Rails.application.routes.draw do
 
   resources :books, shallow: true do
     resources :outputs do
-      resource :favorites, only: [:create, :destroy]
+      resources :favorites, only: [:create, :destroy]
+      resources :comments, only: [:create]
     end
   end
 

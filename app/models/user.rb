@@ -10,7 +10,6 @@ class User < ApplicationRecord
   #投稿機能
   has_many :outputs, dependent: :destroy
 
-  
   #いいね機能
   has_many :favorites, dependent: :destroy
 
@@ -39,7 +38,8 @@ class User < ApplicationRecord
     self.followings.include?(other_user)
   end
 
-
+  #コメント機能
+  has_many :comments
 
   # scope :already_favorited?, -> query {
   #   self.favorites.exists?(output_id: query.id)
