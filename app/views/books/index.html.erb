@@ -3,7 +3,7 @@
 <div class="hero is-bold parallax-bg">
    <div class="hero-body">
        <div class="container">
-          <h1 class="title has-text-white">過去の課題図書</h1>
+          <h1 class="title has-text-white">すべての課題図書</h1>
           <div class="field has-addons">
             <%= form_with url: books_path(search: @search), class: "control", method: :get, local: true do |form| %>
               <input class="input" type="text" name="search" placeholder="タイトル検索" value="<%= @search %>">

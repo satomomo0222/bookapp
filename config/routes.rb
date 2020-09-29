@@ -22,8 +22,8 @@ Rails.application.routes.draw do
   end
 
   devise_for :users
-  root to:'static_pages#home'
-  # root '/', to:'books#show'
+  root to:'books#root'
+
   get '/about', to:'static_pages#about'
   get '/profile/edit', to:'users#edit'
   post '/profile/edit', to:'users#update'

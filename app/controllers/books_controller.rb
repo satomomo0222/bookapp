@@ -18,6 +18,13 @@ class BooksController < ApplicationController
 
   # GET /books/1
   # GET /books/1.json
+
+  def root
+    books = Book.created_desc.first(2)
+    @thisweek = books[1]
+    @book = @thisweek
+    redirect_to(book_path(@book))
+  end
   def show
     if params[:search].present?
       @search = params[:search]

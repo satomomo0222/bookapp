@@ -2,31 +2,37 @@
 
 <section class="hero is-default is-bold mb-5 parallax-bg">
   <div class="hero-body">
-      <div class="container has-text-centered">
-          <h1 class="title has-text-white">過去の課題図書</h1>
-          <div class="columns is-vcentered">
-              <div class="column is-3 is-offset-2">
-                  <figure class="image is-4by4 container is-centered">
-                    <%= attachment_image_tag @book, :book_image, fallback: "no-image", class:"" %>
-                  </figure>
-              </div>
-              <div class="column is-7">
-                  <h1 class="title is-2 has-text-white">
-                    <%= @book.title %>
-                  </h1>
-                  <h2 class="subtitle is-4 has-text-white">
-                      <%= simple_format @book.body %>
-                  </h2>
-                  <br>
-                  <p class="has-text-centered">
-                      <a class="button is-medium is-primary">
-                          購入する
-                      </a>
-                      <%= link_to 'アウトプットする', new_book_output_path(@book) , class:"button is-medium is-danger" %>
-                  </p>
-              </div>
-          </div>
+    <div class="container has-text-centered">
+      <% if @thisweek.id == @book.id %>
+        <h1 class="title has-text-white">今週の課題図書</h1>
+      <% elsif @nextweek.id == @book.id %>
+        <h1 class="title has-text-white">来週の課題図書</h1>
+      <% else %>
+        <h1 class="title has-text-white">過去の課題図書</h1>
+      <% end %>
+      <div class="columns is-vcentered">
+        <div class="column is-3 is-offset-2">
+          <figure class="image is-4by4 container is-centered">
+            <%= attachment_image_tag @book, :book_image, fallback: "no-image", class:"" %>
+          </figure>
+        </div>
+        <div class="column is-7">
+          <h1 class="title is-2 has-text-white">
+            <%= @book.title %>
+          </h1>
+          <h2 class="subtitle is-4 has-text-white">
+            <%= simple_format @book.body %>
+          </h2>  
+          <br>
+          <p class="has-text-centered">
+            <a class="button is-medium is-primary">
+                購入する
+            </a>
+            <%= link_to 'アウトプットする', new_book_output_path(@book) , class:"button is-medium is-danger" %>
+          </p>
+        </div>
       </div>
+    </div>
   </div>
 </section>
 
