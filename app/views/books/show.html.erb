@@ -224,7 +224,8 @@
                 <small>
 
                 <% if user_signed_in? && current_user.already_favorited?(output) %>
-                  <%= link_to output_favorites_path(output),method: :delete do %>
+                  <% favorite = Favorite.find_by(user_id:current_user.id, output_id: output.id) %>
+                  <%= link_to favorite_path(favorite,output),method: :delete do %>
                     <i class="fas fa-heart"></i>
                   <% end %>
                 <% else %>

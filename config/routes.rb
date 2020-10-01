@@ -36,5 +36,8 @@ Rails.application.routes.draw do
 
   #フォロー機能
   resources :relationships, only: [:create, :destroy]
+
+  # 通知機能
+  resources :notifications, only: :index
   
 end

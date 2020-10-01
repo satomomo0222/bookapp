@@ -71,6 +71,11 @@
           <%= link_to '今週の課題図書', root_url , class:"navbar-item" %>
           <%= link_to '過去の課題図書', books_path , class:"navbar-item" %>
           <%= link_to "マイページ", user_path(current_user), class: "navbar-item" %> 
+          <% if unchecked_notifications.any? %>
+            <i class="fa fa-circle" style="color: gold;"></i>
+          <% end %>
+          <%= link_to "通知", notifications_path, class: "navbar-item" %>
+
           <div class="navbar-item has-dropdown is-hoverable">
             <p class="navbar-link">
               その他
