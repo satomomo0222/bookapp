@@ -38,6 +38,8 @@ Rails.application.routes.draw do
   resources :relationships, only: [:create, :destroy]
 
   # 通知機能
-  resources :notifications, only: :index
+  resources :notifications, only: [:index]
+  delete  '/notifications', to: 'notifications#destroy_all'
+
   
 end

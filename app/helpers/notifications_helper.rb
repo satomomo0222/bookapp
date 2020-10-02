@@ -13,7 +13,11 @@ module NotificationsHelper
         tag.a(notification.visiter.username, href:user_path(@visiter), style:"font-weight: bold;")+"が"+tag.a('あなたの投稿', href:output_path(notification.output_id), style:"font-weight: bold;")+"にいいねしました"
       when "comment" then
           @comment = Comment.find_by(id: @visiter_comment)&.body
-          tag.a(@visiter.username, href:user_path(@visiter), style:"font-weight: bold;")+"が"+tag.a('あなたの投稿', href:output_path(notification.output_id), style:"font-weight: bold;")+"にコメントしました"
+          if Output.find_by(id: notification.output_id).user_id == notification.visited_id
+            tag.a(@visiter.username, href:user_path(@visiter), style:"font-weight: bold;")+"が"+tag.a('あなたの投稿', href:output_path(notification.output_id), style:"font-weight: bold;")+"にコメントしました"
+          else
+            tag.a(@visiter.username, href:user_path(@visiter), style:"font-weight: bold;")+"が"+tag.a('あなたがコメントした投稿', href:output_path(notification.output_id), style:"font-weight: bold;")+"にコメントしました"
+          end
     end
   end
 
@@ -22,4 +26,3 @@ module NotificationsHelper
   end
 
 end
-
