@@ -25,6 +25,7 @@ class BooksController < ApplicationController
     @book = @thisweek
     redirect_to(book_path(@book))
   end
+
   def show
     if params[:search].present?
       @search = params[:search]
