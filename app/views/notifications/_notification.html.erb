@@ -1,13 +1,22 @@
 <% visiter = notification.visiter %>
 <% output = notification.output %>
 
-<div class="user-view clearfix ">
-  <%= link_to user_path(notification.visiter) do %>
-    <%= attachment_image_tag visiter, :profile_image, :fill,100,100, format: "jpeg", fallback: "no_image.jpg", size: "50x50", class:"profile-img-circle" %>
-  <% end %>
-  <%= notification_form(notification) %><span class="moderate-font"><%= " (#{time_ago_in_words(notification.created_at)} 前)" %></span>
-  <br>
-  <% if !@comment.nil? %>
-    <p class="moderate-font text-center" style="color: #C0C0C0;"><%= @comment %></p>
-  <% end %>
-</div>
+<article class="media has-text-white">
+  <figure class="media-left">
+    <%= link_to user_path(notification.visiter) do %>
+      <figure class="image is-48x48">
+        <%= attachment_image_tag visiter, :profile_image, :fill,100,100, fallback: "no-image",class:"is-rounded" %>
+      </figure>
+    <% end %>
+  </figure>
+  <div class="media-content">
+    <div class="content">
+      <p class="has-text-white">
+        <strong class="has-text-white"><%= notification_form(notification) %><span class="moderate-font"><%= " (#{time_ago_in_words(notification.created_at)} 前)" %></span></strong><br>
+        <% if !@comment.nil? %>
+          コメント内容：<strong style="color:white;line:height:4em"><%= @comment %></strong>
+        <% end %><br>
+      </p>
+    </div>
+  </div>
+</article>

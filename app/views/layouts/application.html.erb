@@ -73,8 +73,11 @@
           <%= link_to "マイページ", user_path(current_user), class: "navbar-item" %> 
           <% if unchecked_notifications.any? %>
             <i class="fa fa-circle" style="color: gold;"></i>
+            <%= link_to "通知", notifications_path, class: "navbar-item has-background-warning has-text-dark"%>
+          <% else %>
+            <%= link_to "通知", notifications_path, class: "navbar-item"%>
           <% end %>
-          <%= link_to "通知", notifications_path, class: "navbar-item" %>
+          
 
           <div class="navbar-item has-dropdown is-hoverable">
             <p class="navbar-link">
