@@ -22,5 +22,7 @@ module Bookapp
     config.i18n.default_locale = :ja
     # タイムゾーンも変更するなら，以下を追加
     config.time_zone = 'Asia/Tokyo'
+    # rack-attackを使うことを明示
+    config.middleware.use Rack::Attack
   end
 end

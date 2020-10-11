@@ -63,3 +63,6 @@ gem 'rails-i18n'
 
 # 管理者画面のgem
 gem "administrate"
+
+# 管理者画面のバリデーション
+gem 'rack-attack'
