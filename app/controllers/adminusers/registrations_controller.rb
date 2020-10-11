@@ -5,29 +5,29 @@ class Adminusers::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  def new
+    render "Forbidden"
+  end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    render "Forbidden"
+  end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def edit
+    render "Forbidden"
+  end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    render "Forbidden"
+  end
 
   # DELETE /resource
-  # def destroy
-  #   super
-  # end
+  def destroy
+    render "Forbidden"
+  end
 
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign
