@@ -66,3 +66,6 @@ gem "administrate"
 
 # 管理者画面のバリデーション
 gem 'rack-attack'
+
+# 環境変数をファイルとして保存できるようにする
+gem 'dotenv-rails'
