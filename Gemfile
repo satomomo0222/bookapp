@@ -69,3 +69,5 @@ gem 'rack-attack'
 
 # 環境変数をファイルとして保存できるようにする
 gem 'dotenv-rails'
+
+gem "refile-s3"
