@@ -1,24 +1,30 @@
-# README
+# オンライン読書会アプリの制作（未使用）
+  管理者が提示する課題図書に対する感想を投稿するプラットフォーム。
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+  ターゲット：　読書習慣をつけたい人
+  メリット：　感想を共有する人たちと繋がることで、強制力が発生する。アウトプットすることで知識が定着する。
+  マネタイズ：　Amazonアソシエイト
 
-Things you may want to cover:
+### 作成手順
+  ①アプリの概要を決めた
+    ・課題図書に対して読書レビューを投稿するSNS
+  ②実装する機能を決めた
+    管理者
+     ・管理者機能
+     ・管理者が課題図書を投稿する機能
+    ユーザー
+     ・ユーザの登録・編集・削除機能
+     ・感想の投稿・編集・削除機能
+     ・投稿に対するいいね機能
+     ・投稿に対するコメント機能
+     ・投稿のキーワード検索機能
+     ・投稿の並び替え機能
+     ・ユーザーのフォロー機能
+     ・お知らせ機能
+  ③E-R図を作成した
+  ④機能を一つずつ実装。同時に簡単なUIを作った
+  ⑤AmazonS3を使って、本番環境で画像を投稿できるようにした
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### 反省
+  初めてのアプリ制作にしては機能が多すぎた。作業に時間がかかり、細かい部分にこだわりきれなかった。
+  次からは、最低限の機能でプロトタイプを作ることを意識すべき。
