@@ -15,7 +15,7 @@ class Adminusers::RegistrationsController < Devise::RegistrationsController
   end
 
   # GET /resource/edit
-  def edit
+  def edits
     render "Forbidden"
   end
 
